@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6e14adef-7ee5-424d-93b4-30444d7dab89" name="Default" comment="question">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/database.yml" afterPath="$PROJECT_DIR$/config/database.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/migrate/20120910055307_change_column.rb" afterPath="$PROJECT_DIR$/db/migrate/20120910055307_change_column.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/migrate/20120927062812_time_taken_type_change.rb" afterPath="$PROJECT_DIR$/db/migrate/20120927062812_time_taken_type_change.rb" />
     </list>
     <ignored path="Test.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,10 +30,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="20120910055307_change_column.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="20120910055307_change_column.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/db/migrate/20120910055307_change_column.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="84" selection-start="373" selection-end="373" vertical-scroll-proportion="0.25824964">
+            <state line="12" column="84" selection-start="373" selection-end="373" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="20120927062812_time_taken_type_change.rb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/db/migrate/20120927062812_time_taken_type_change.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="6" column="28" selection-start="190" selection-end="190" vertical-scroll-proportion="0.12912482">
               <folding />
             </state>
           </provider>
@@ -54,7 +61,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/lib/tasks/mailer.rake" />
         <option value="$PROJECT_DIR$/app/controllers/recruitment_tests_controller.rb" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/custom.css.scss" />
         <option value="$PROJECT_DIR$/app/models/question.rb" />
@@ -70,6 +76,7 @@
         <option value="$PROJECT_DIR$/app/views/answers/_additional_questions.html.erb" />
         <option value="$PROJECT_DIR$/config/database.yml" />
         <option value="$PROJECT_DIR$/db/migrate/20120910055307_change_column.rb" />
+        <option value="$PROJECT_DIR$/db/migrate/20120927062812_time_taken_type_change.rb" />
       </list>
     </option>
   </component>
@@ -469,21 +476,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/controllers/recruitment_tests_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="84" column="5" selection-start="3088" selection-end="3088" vertical-scroll-proportion="0.67933494" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/user_mailer/admin_selected_result_email.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="26" selection-start="1231" selection-end="1245" vertical-scroll-proportion="-13.75" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/helpers/recruitment_tests_helper.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="101" selection-start="420" selection-end="420" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/user_mailer/admin_result_email.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="69" column="105" selection-start="2485" selection-end="2485" vertical-scroll-proportion="-6.0" />
@@ -548,7 +540,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/db/migrate/20120910055307_change_column.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="84" selection-start="373" selection-end="373" vertical-scroll-proportion="0.25824964">
+        <state line="12" column="84" selection-start="373" selection-end="373" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20121029073405_cutoff.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20120928051834_create_templates.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20120927062812_time_taken_type_change.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="28" selection-start="190" selection-end="190" vertical-scroll-proportion="0.12912482">
           <folding />
         </state>
       </provider>
