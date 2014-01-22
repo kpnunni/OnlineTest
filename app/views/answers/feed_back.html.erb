@@ -1,0 +1,28 @@
+<script type="text/javascript ">
+     document.onkeydown = function(e){
+    if(e.keyCode == 8)
+            {
+                return false;
+            }
+
+    }
+</script>
+            <h1>Feedback</h1>
+
+    <%= form_for @recruitment_test   do |f| %>
+
+        <br />
+    Please put your feedback on how the online testing experience.<br />
+    Please mention if you come across any system errors.    <br />
+    If you think the question quality can be improved, you would have needed more time.<br />
+    Also note that your feedback is not related to your selection process.   <br />
+    It would be only taken towards our system improvement <br />
+
+        <%= f.text_area :feedback , :row=>"10",:class=>"quest"%>
+        <%= f.hidden_field :candidate_id, value: @candidate %>
+
+        <br />
+        <%= f.button "Submit", :name=>"from",:value=>"my_feedback"  ,class: "button",:disable_with=>"Submitting.." %>
+
+    <% end %>
+

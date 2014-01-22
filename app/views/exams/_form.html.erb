@@ -1,0 +1,84 @@
+
+  <div id="new_instruction"   style="display: none;"   >
+    <%= form_for @instruction   do |f1| %>
+         <b>New Instruction</b><br />
+        <%= f1.text_field :instruction%>
+        <%= f1.submit "Add" ,class: "btn btn-large btn-success",:name=>"by",:value=>"add" %><br />
+    <% end %>
+    </div>
+
+    <div >
+    <%= form_for @exam  do |f| %>
+
+
+          <div class="error_msg">
+            <%= render  "shared/error_message", :target => @exam  %>
+          </div>
+
+
+
+
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+
+        <%= f.label  :description%>
+        <%= f.text_field :description %>
+        <%= f.label :Complexity %>
+        <%= f.select("complexity_id", Complexity.all.reverse.collect {|s| [s.complexity, s.id ] }, { :selected =>@exam.complexity_id}) %>
+
+        <br /><b>Instructions</b><br />  <br/>
+          <input type="checkbox" onClick="toggle1(this)" /> Toggle All
+
+        <% Instruction.all.each do |instruction| %>
+            <br />
+            <%= check_box_tag "exam[instruction_ids][]", instruction.id, @exam.instructions.include?(instruction.id)  %>
+            <%= instruction.instruction %>
+        <% end %>
+        <br />
+
+
+        <%= link_to 'new_instruction?' , '#' ,:remote=>true,:onclick=> "jQuery('#new_instruction').dialog({ modal: true, title: 'Adding new instruction',width: 260 } );"%>   <br />   <br />
+
+
+      <table  class="index_table" >
+      <tr>
+        <th>category</th>
+        <th>no_of_question</th>
+        <th>available</th>
+      </tr>
+
+      <% Category.all.each do |category| %>
+        <% if !category.questions.empty?  %>
+          <tr>
+            <td><%= category.category %></td>
+            <%= f.fields_for :subj do |category_fields| %>
+            <td><%= category_fields.number_field  (category.category ) , :class => "text_box"  %></td>
+            <% end %>
+            <td><%= category.questions.count %></td>
+          </tr>
+        <% end %>
+      <% end %>
+      </table>
+
+
+
+        <br />
+        <%= f.submit  class: "btn btn-large btn-success",:onclick=>"show_submitting();",:disable_with=>"Submitting.." %>
+        <%= link_to "Cancel",exams_path,class: "btn btn-large btn-warning" %>
+    <% end %>
+
+
+    </div>
+
+
+
+
+
+<script type="text/javascript" >
+    function toggle1(source) {
+
+        var checkboxes = document.getElementsByName("exam[instruction_ids][]");
+        for(var i in checkboxes)
+            checkboxes[i].checked = source.checked;
+    }
+</script>

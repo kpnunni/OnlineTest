@@ -1,0 +1,50 @@
+<% if @candidates.empty?   %>
+    <h3><%="No candidates to schedule the exam" %></h3>
+    <%= link_to image_tag('adduser.png'), new_candidate_path,  :title=>"add new candidate"   %>
+<% else %>
+    <%= form_for @schedule, :html => { :onsubmit=>"show_submitting();" } do |f| %>
+        <div class="error_msg">
+          <%= render  "shared/error_message", :target => @schedule   %>
+        </div>
+
+
+        <%= f.label :exam%>
+        <%= f.select  :exam_id , @exam.collect {|e| [e.name,e.id]},{},  style: "width: 300px;"%><br/>
+
+
+
+
+      <br/> <h3>Candidates:</h3><br/>
+     <table class="index_table"  >
+       <tr>
+         <th>select/not</th>
+         <th>Candidate Name</th>
+         <th>Email id</th>
+       </tr>
+
+         <%= f.fields_for :candidate_ids do |f1| %>
+             <% @candidates.each do |c| %>
+           <tr>
+             <td width="20%"  ><%= f1.check_box  c.id , :checked=> !@schedule.candidates.empty?  ? @schedule.candidates.include?(c) : false %></td>
+             <td width="30%" ><%= c.name %></td>
+             <td width="50%" ><%= c.user.user_email %></td>
+          </tr>
+         <% end %>
+     </table>
+       <br />
+           <%= f.label :date_and_time %>
+           <%= f.text_field  :sh_date  ,:value => (@schedule && @schedule.sh_date.blank? ? '' : @schedule.sh_date.strftime("%d-%m-%Y  %I:%M%p") ) ,  required:{} %>
+           <br />
+       <%= f.submit class: "btn btn-large btn-success",:disable_with=>"Scheduling"  %>
+        <%= link_to   "Cancel" ,schedules_path,class: "btn btn-large btn-warning" %>
+     <% end %>
+   <% end %>
+
+    <% end %>
+
+
+
+
+
+
+

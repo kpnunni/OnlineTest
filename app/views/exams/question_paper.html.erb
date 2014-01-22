@@ -1,0 +1,28 @@
+
+        
+         <h1>Question Paper</h1>
+        
+            <table width="100%"  border="10" bordercolor="green "   >
+      <tr>
+        <th>No:</th>
+        <th>question</th>
+        <th>allowed_time</th>
+        <th>category</th>
+        <th>Complexity</th>
+      </tr>
+
+              <% count=0 %>
+      <% @qpaper.each do |qpaper| %>
+          <tr>
+            <td><%= count+=1 %></td>
+            <td class="lft" ><%= qpaper.question  %></td>
+            <td><%= qpaper.allowed_time %></td>
+            <td><%= qpaper.category.category   %></td>
+            <td><%= qpaper.complexity.complexity    %></td>
+          </tr>
+      <% end %>
+    </table>
+        
+        <%= link_to image_tag('back.png'),exam_path(@exam )  %>
+        
+        

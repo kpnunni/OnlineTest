@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h2>Hi ,<%= @user.candidate.name %>.  </h2>
+
+    <p> <b>
+      This is your result of suyati recruitment test.<br />
+      <%if @user.candidate.recruitment_test.is_passed=="Passed" %>
+          <p>
+            <%=simple_format  @pass.body %>
+          </p>
+      <%else%>
+          <p>
+            <%=simple_format  @fail.body %>
+          </p>
+      <% end %>
+    </b>
+    </p>
+
+  </body>
+</html>

@@ -1,0 +1,55 @@
+<h1>Candidate:
+  <%=@recruitment_test.candidate.name %>
+
+</h1>
+<br/>
+<b>Email id:</b><%= @recruitment_test.candidate.user.user_email %><br/>
+<b>Exam completed on:</b><%= @recruitment_test.completed_on.strftime("%b %d %A,%Y at %I:%M%p")  %> <br/>
+<br/>
+
+<%= render 'category_wise_mark' %>
+
+<br/>
+<h3>Feed Back:</h3><br />
+<%=simple_format  @recruitment_test.feedback.present? ? @recruitment_test.feedback : "No feed back" %>
+
+
+<br/>
+
+<h3 align="left" >Answer Paper:</h3> <br/>
+
+<table  class="index_table"      >
+  <tr>
+    <th width="60%" >Question</th>
+    <th width="15%" >Candidate's Answer</th>
+    <th width="10%" >Right answer</th>
+    <th width="5%" >Time bonus</th>
+    <th width="5%" >Category</th>
+    <th width="5%" >Complexity</th>
+  </tr>
+  <% @recruitment_test.candidate.answers.each do |ans| %>
+      <%if ans.question %>
+          <tr>
+        <td class="lft" ><%=ans.question.question   %></td>
+        <td><%ans.question.options.each_with_index do |op,i|  %>
+              <% if ans.answer[i]=="1" %>
+                  <%='['+op.option+']'  %>
+              <% end %>
+          <% end %>
+        </td>
+        <td><%ans.question.options.each do |op|  %>
+              <% if op.is_right  %>
+                  <%='['+op.option+']'  %>
+              <% end %>
+          <% end %>
+        </td>
+        <td><%=(a=ans.question.allowed_time-ans.time_taken)>0?a:0 %></td>
+        <td><%=ans.question.category.category  %></td>
+        <td><%=ans.question.complexity.complexity  %></td>
+
+      </tr>
+          <% end %>
+  <% end %>
+
+
+</table>

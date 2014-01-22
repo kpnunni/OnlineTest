@@ -1,0 +1,24 @@
+<script type="text/javascript ">
+     document.onkeydown = function(e){
+    if(e.keyCode == 8)
+            {
+                return false;
+            }
+
+    }
+</script>
+<h3 align="center" > <br /> <br />
+
+
+  <% if @candidate.recruitment_test.mark_percentage>=70%>
+     Congratulations! you have got good score
+  <% elsif @candidate.recruitment_test.mark_percentage<70 &&@candidate.recruitment_test.mark_percentage>=50 %>
+       your score is satisfactory
+  <% elsif @candidate.recruitment_test.mark_percentage<50&&@candidate.recruitment_test.mark_percentage>=25 %>
+         your score is average
+  <% end %>
+  <br /><br />
+  Result will be mail to your account soon.     <br /><br />
+  Best of luck.  <br />
+
+</h3>

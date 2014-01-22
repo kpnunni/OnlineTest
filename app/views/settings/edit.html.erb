@@ -1,0 +1,107 @@
+
+    <div>
+      <h1>Settings</h1>
+      <%= form_for :setting , :url => '/settings/update',:method=>'PUT' do |f| %>
+
+
+
+
+            <table style="width: 100%;" border="2">
+              <tr>
+                <th>Name</th>
+                <th>Value</th>
+              </tr>
+              <tr>
+                <td class="lft">Can start exam before: (in minutes)  **not using</td>
+                <td><%=  number_field_tag "from" ,@from,  class: "text_box" %></td>
+              </tr>
+              <tr>
+                <td class="lft">Cannot start exam after: (in minutes)</td>
+                <td><%= number_field_tag "untill", @untill,  class: "text_box"   %></td>
+              </tr>
+              <tr>
+                <td class="lft">Time Limit for each Question?</td>
+                <td><%= check_box_tag :each_mode ,1,@each_mode.eql?("on")%></td>
+              </tr>
+              <tr>
+                <td class="lft">Negative mark?</td>
+                <td><%= check_box_tag :negative ,1,@negative_mark.eql?("on")%></td>
+              </tr>
+              <tr>
+                <td class="lft">Enable load more question?</td>
+                <td><%= check_box_tag :load_more ,1,@load_more.eql?("on")%></td>
+              </tr>
+              <tr>
+                <td class="lft">Multiplication value for time limit for all question settings</td>
+                <td><%= text_field_tag :multiply_with,@multiply_with,  class: "text_box"  %></td>
+              </tr>
+              <tr>
+                <td class="lft">Code to start the Exam</td>
+                <td><%= text_field_tag :start_code,@start_code %></td>
+              </tr>
+              <tr>
+                <td class="lft">Auto result calculation?</td>
+                <td><%= check_box_tag :auto_result,1,@auto_result.eql?("on"),:onClick=>"show_category()" %></td>
+              </tr>
+
+
+            </table>
+
+
+          <div id="cutoff">
+            <table   class="index_table" >
+              <tr>
+                <th>category</th>
+                <th>Cut off Percentage</th>
+              </tr>
+
+              <% @categories.sort.each_with_index do |cat,i| %>
+                  <tr>
+                    <td><%= cat.category %></td>
+                     <%=fields_for :categories_attributes do|del|  %>
+                      <td><%= del.select cat.id , @cut_off ,{ :selected=>cat.cutoff }  %></td>
+                     <% end %>
+
+                  </tr>
+              <% end %>
+            </table>
+          </div>
+          <br />
+ <br />
+          <%= f.submit "submit" ,class: "button" ,:onclick=>"show_submitting();"%>
+
+      <% end %>
+
+
+    </div>
+
+
+
+<script type="text/javascript">
+    function show_category()
+    {
+       if(document.getElementById('auto_result').checked)
+       {
+           document.getElementById('cutoff').toggle();
+       }
+       else
+       {
+           document.getElementById('cutoff').style.display='none';
+       }
+
+    }
+</script>
+<script type="text/javascript">
+    document.ready = function()
+    {
+       if(document.getElementById('auto_result').checked)
+       {
+         //  document.getElementById('cutoff').toggle();
+       }
+       else
+       {
+           document.getElementById('cutoff').style.display='none';
+       }
+
+    }
+</script>

@@ -1,0 +1,34 @@
+
+     <div align="center">
+       <%= image_tag 'Profile.png',:title => 'Profile'  %>
+     </div>
+
+     <b>
+
+    User Email:</b>
+    <%= @user.user_email %> <br/>
+     <b>Roles:</b>
+
+     <% @user.roles.each_with_index do |role,i| %>
+         <br />
+        <%=(i+1).to_s+"."+role.role_name  %>
+
+    <% end %>
+      <br />
+     <b>Profile created at:</b>
+    <%= @user.created_at.strftime("%b %d %A,%Y at %I:%M%p") %> <br />
+    <b> Profile updated at:</b>
+    <%= @user.updated_at.strftime("%b %d %A,%Y at %I:%M%p") %> <br /><br />
+
+
+    <%= link_to image_tag('pass.png'),chgpass_user_path(@user), :class=>"dropt", :title=>"change password"  %>
+
+
+
+
+
+
+
+
+
+

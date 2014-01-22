@@ -1,0 +1,34 @@
+<div align="center">
+  <%= image_tag 'welcome.png'  %>
+</div>
+<FONT COLOR="#191970">
+  <h3>
+    Hi <%= @candidate.name  %>
+  </h3>
+</FONT>
+<br/>
+<div id="popup">
+  Pop up blocker is enabled.
+  Please disable your pop-up blocker then reload page.
+</div>
+<div id="update_form" style="display: none;">
+  <%= nested_form_for @candidate, :url=>"/answers/#{@candidate.id}/candidate_update" do |f|%>
+      <%=  render 'candidates/form_fields', f: f %>
+      <%= f.submit    :name=>"from",:value=>"update",class: "btn btn-large btn-primary",:disable_with=>"Updating.." %>
+  <% end %>
+</div>
+<script type="text/javascript">
+    function check_pop_up(){
+        var windowName = 'userConsole';
+        var popUp = window.open('/answers/check_popup', windowName, 'width=300, height=100, left=200, top=200, scrollbars, resizable');
+        if (popUp != null && typeof(popUp) != 'undefined') {
+            document.getElementById("update_form").show();
+            document.getElementById("popup").hide();
+            popUp.focus();
+            popUp.close();
+        }
+    }
+    jQuery(document).ready(function(){
+        check_pop_up();
+    });
+</script>

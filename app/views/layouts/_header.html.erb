@@ -1,0 +1,82 @@
+<header class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+
+	   <%= link_to image_tag('suyati1.png', :size => "300x70"),(current_user && !my_roles.include?('Candidate') ) ? '/homes/index' : '#'  %>
+      <nav>
+        <ul class="nav pull-right">
+          <% @ok = signed_in? && !my_roles.include?('Candidate') %>
+         <%if @ok %>
+              <% if admin? %>
+              <li><%= link_to "Home",   '/homes/admin' %></li>
+               <% else %>
+              <li><%= link_to "Home",   '/homes/index' %></li>
+               <% end %>
+              <li  class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  My Dashboard <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  <%if my_roles.include?('Manage Users')   %>
+                  <li><%= link_to "Users", '/users' %></li>
+                  <% end %>
+
+                  <%if my_roles.include?('Manage Candidates')   %>
+                  <li><%= link_to "Candidates", '/candidates' %></li>
+                  <% end %>
+
+                  <%if my_roles.include?('Add Questions Only') ||my_roles.include?('Manage Questions') ||my_roles.include?('Add Questions')  %>
+                  <li><%= link_to "Question Bank",  '/questions' %></li>
+                   <% end %>
+
+                  <%if my_roles.include?('Manage Exams')   %>
+                  <li><%= link_to "Exams", '/exams' %></li>
+                  <% end %>
+
+                  <%if my_roles.include?('Schedule')||my_roles.include?('Re Schedule')||my_roles.include?('Cancel Schedule')   %>
+                  <li><%= link_to "Schedules", '/schedules' %></li>
+                   <% end %>
+
+                  <%if my_roles.include?('Validate Result')||my_roles.include?('View Result')   %>
+                  <li><%= link_to "Results", '/recruitment_tests' %></li>
+                   <% end %>
+
+                </ul>
+              </li>
+              <%if my_roles.include?('Manage Templates')   %>
+              <li  class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Email Templates <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "New Schedule", '/templates/1' %></li>
+                  <li><%= link_to "New Schedule for remote candidate", '/templates/6' %></li>
+                  <li><%= link_to "Re Schedule", '/templates/2' %></li>
+                  <li><%= link_to "Cancel Schedule",  '/templates/3' %></li>
+                  <li><%= link_to "Result 'Passed'", '/templates/4' %></li>
+                  <li><%= link_to "Result 'Failed'", '/templates/5' %></li>
+                </ul>
+              </li>
+              <% end %>
+        <li  class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                My Account <b class="caret"></b>
+              </a>
+        <ul class="dropdown-menu">
+           <%if admin? %>
+            <li> <%= link_to "Settings",'/settings/edit' %></li>
+           <% end %>
+             <li> <%= link_to "Profile", profile_user_path(current_user) %></li>
+             <li> <%= link_to "Sign out", '/signout',method: :delete %></li>
+        </ul>
+        </li>
+
+        <% end %>
+
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+

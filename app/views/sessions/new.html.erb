@@ -1,0 +1,21 @@
+
+
+    <h1>Login:</h1>
+
+
+    <%= form_for(:session, url: sessions_path) do |f| %>
+
+        <%= f.label :email %>
+        <%= f.text_field :email ,:value=>(params[:session]? params[:session][:email] : "") ,required:{}%>
+        <%= f.label :password %>
+        <%= f.password_field :password ,required:{}%><br />
+
+        <%= f.check_box :remember%>Remember_me<br />
+
+
+        <%= f.submit "Sign in", class: "btn btn-large btn-primary"%>
+
+    <% end %>
+    Sign up as<%= link_to ' Employee',signup_sessions_path(:as=>"emp") %>/
+    <%= link_to ' Candidate',signup_sessions_path(:as=>"can") %> <br/>
+    <%= link_to 'Forgot password?',forgotpass_sessions_path %> <br/>

@@ -1,0 +1,92 @@
+
+        <h1>Edit Exam</h1>
+
+
+
+    <%= form_for @exam  do |f| %>
+
+
+            <div class="error_msg">
+              <%= render  "shared/error_message", :target => @exam   %>
+            </div>
+
+
+
+
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+
+        <%= f.label  :description%>
+        <%= f.text_field :description %>
+
+        <br />Instructions
+        <% Instruction.all.each do |instruction| %>
+            <br />
+            <%= check_box_tag "exam[instruction_ids][]", instruction.id, @exam.instructions.include?(instruction)   %>
+            <%= instruction.instruction %>
+        <% end %>
+
+        <br />
+                <%#= link_to 'new_instruction?' , '#',:onclick=>"show_instruction()"  %>   <br />   <br />
+
+        <%= f.label :Complexity %>
+        <%= f.select("complexity_id", Complexity.all.collect {|s|
+         [s.complexity, s.id ] }, { :include_blank => false, :selected =>
+        @exam.complexity_id}) %>
+
+
+
+      <table  class="index_table" >
+      <tr>
+        <th>category</th>
+        <th>no_of_question</th>
+        <th>available</th>
+      </tr>
+
+      <% Category.all.each do |category| %>
+          <tr>
+            <td><%= category.category %></td>
+
+
+            <%= f.fields_for :subj do |category_fields| %>
+            <td><%= category_fields.number_field  (category.category ) , :value=>@exam.questions.where("category_id=?",category.id).count ,   :class => "text_box" %></td>
+            <% end %>
+
+            <td><%= category.questions.count %></td>
+
+          </tr>
+      <% end %>
+      </table>
+        <br />
+        <%#=check_box_tag "regenerate","Yes" %>
+        <%= f.submit class: "btn btn-large btn-success" ,:onclick=>"show_submitting();",:disable_with=>"Updating.."%>
+          <%= link_to  "Cancel" ,exams_path ,class: "btn btn-large btn-warning"%>
+    <% end %>
+
+
+
+
+
+
+  <script type="text/javascript">
+   function show_instruction()
+   {
+
+       document.getElementById('new_instruction1').toggle();
+   }
+ </script>
+ <script type="text/javascript">
+    window.onload = function()
+    {
+        document.getElementById('new_instruction1').style.display='none';
+    }
+ </script>
+
+
+
+
+
+
+
+
+

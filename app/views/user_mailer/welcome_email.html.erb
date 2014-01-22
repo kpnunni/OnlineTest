@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h2>Hi,</h2>
+    <p>
+      Your email id is registered in "Suyati online recruitment test". <br/>
+    </p>
+    <p>
+      .....................................................<br/>
+      username is: <%= @user.user_email %>.<br/>
+      password is: <%= @pass %>.<br/>
+      .....................................................<br/>
+    </p>
+    <p>
+      Your Roles:
+      <%  @user.roles.each_with_index do |role,i| %>
+        <br />
+        <%=(i+1).to_s+"."+role.role_name  %>
+         <%end  %>
+         <br/>
+    </p>
+
+
+    <p>   <br/>
+      Please change your password by "My Profile - Change Password" as early as possible.  <br/>
+
+      To login to the site, just follow this link:<%=link_to 'here' ,@url %> <br/>
+   <br/>
+     </p>
+   </body>
+</html>

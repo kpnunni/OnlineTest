@@ -1,0 +1,14 @@
+<% if @user.nil? %>
+    <h1>Candidate Registration</h1>
+    <%= nested_form_for @candidate ,:url=>'/sessions/registration', :html => { :onsubmit=>"show_submitting();" , :multipart => true } do |f| %>
+        <%=  render 'candidates/form_fields', f: f %>
+        <%= f.submit "Register" ,:name=>'can',:value=>'Register',class: "btn btn-large btn-primary" ,:disable_with=>"Registering.." %>
+    <% end %>
+<% else %>
+    <h1>Employee Registration</h1>
+    <%= form_for @user,:url=>'/sessions/registration' do |f| %>
+        Email id: <%= f.text_field :user_email ,:value=>(params[:user]?params[:user][:user_email]:""),required:{} %><br/>
+        <%= f.submit 'Register',:name=>'emp',:value=>'Register',:class=>'btn btn-large btn-primary',:disable_with=>"Registering.."%>
+    <% end %>
+<% end %>
+<%= link_to image_tag('back.png'),new_session_path %>

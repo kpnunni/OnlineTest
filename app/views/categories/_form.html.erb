@@ -1,0 +1,21 @@
+
+
+<%= form_for  (@category) do |f1| %>
+
+
+    <div class="error_msg">
+      <%= render  "shared/error_message", :target => @category  %>
+    </div>
+
+
+
+
+        <%= f1.label :category_name %>
+        <%= f1.text_field :category %>
+        <br />
+
+        <%= f1.submit "Add" ,class: "btn btn-large btn-primary",:onclick=>"show_submitting();" %>
+
+
+    <% end %>
+

@@ -1,0 +1,15 @@
+
+    <%= form_for @instruction do |f| %>
+
+
+        <div class="error_msg">
+          <%= render  "shared/error_message", :target => @instruction  %>
+        </div>
+
+
+
+        <div class="input-append">
+            <%= f.text_field :instruction ,  style: "width: 500px;", class: "span2", id: "appendedInputButton"%>
+            <%= f.submit class: "btn btn-primary",:onclick=>"show_submitting();" %><br />
+        </div>
+    <% end %>
