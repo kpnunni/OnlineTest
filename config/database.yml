@@ -12,7 +12,7 @@ development:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: Test_development
+  database: onlineTest_development
   pool: 5
   username: root
   password: Suyati123
@@ -25,18 +25,9 @@ test:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: Test_test
+  database: onlineTest_test
   pool: 5
   username: root
   password: Suyati123
   socket: /var/run/mysqld/mysqld.sock
 
-production:
-  adapter: mysql2
-  encoding: utf8
-  reconnect: false
-  database: Test_production
-  pool: 5
-  username: root
-  password: Suyati123
-  socket: /var/run/mysqld/mysqld.sock
