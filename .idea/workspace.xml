@@ -42,7 +42,7 @@
       <file leaf-file-name="20120927062812_time_taken_type_change.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/db/migrate/20120927062812_time_taken_type_change.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="28" selection-start="190" selection-end="190" vertical-scroll-proportion="0.12912482">
+            <state line="5" column="28" selection-start="167" selection-end="167" vertical-scroll-proportion="0.10760402">
               <folding />
             </state>
           </provider>
@@ -561,7 +561,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/db/migrate/20120927062812_time_taken_type_change.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="28" selection-start="190" selection-end="190" vertical-scroll-proportion="0.12912482">
+        <state line="5" column="28" selection-start="167" selection-end="167" vertical-scroll-proportion="0.10760402">
           <folding />
         </state>
       </provider>

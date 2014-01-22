@@ -3,7 +3,7 @@ class TimeTakenTypeChange < ActiveRecord::Migration
    connection.execute(%q{
     alter table answers
     alter column time_taken
-    type integer using cast(number as integer)
+    type integer using cast(time_taken as integer)
   })
   end
 
