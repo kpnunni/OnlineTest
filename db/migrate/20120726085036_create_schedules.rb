@@ -2,8 +2,10 @@ class CreateSchedules < ActiveRecord::Migration
   def change
     create_table :schedules do |t|
       t.integer :exam_id
-      t.date :sh_date
-      t.time :sh_time
+      t.datetime :sh_date
+      t.string :created_by
+      t.string :updated_by
+      t.boolead :remote, default: false
       t.timestamps
     end
   end

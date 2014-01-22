@@ -4,7 +4,7 @@ class CreateAnswers < ActiveRecord::Migration
       t.integer :candidate_id
       t.integer :question_id
       t.string :answer
-      t.time :time_taken
+      t.integer :time_taken
       t.timestamps
     end
   end

@@ -14,6 +14,7 @@ class CreateCandidates < ActiveRecord::Migration
       t.string :resume_file_size
       t.integer :resume
       t.integer  :schedule_id
+      t.boolean :submitted, default: false
       t.timestamps
     end
   end

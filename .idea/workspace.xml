@@ -2,7 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6e14adef-7ee5-424d-93b4-30444d7dab89" name="Default" comment="question">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/migrate/20120927062812_time_taken_type_change.rb" afterPath="$PROJECT_DIR$/db/migrate/20120927062812_time_taken_type_change.rb" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/db/migrate/20120914090057_questiontotext.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/db/migrate/20120917072044_datetimefield.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/db/migrate/20120927062812_time_taken_type_change.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/db/migrate/20121005080310_addcreateby.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/db/migrate/20121011103148_add_feedback_to_result.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/db/migrate/20121029070748_create_settings.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/db/migrate/20121029073405_cutoff.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/db/migrate/20131010055748_add_remote_column_in_candidate.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/db/migrate/20140122071649_add_column_submitted_to_candidates.rb" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/migrate/20120710072410_create_candidates.rb" afterPath="$PROJECT_DIR$/db/migrate/20120710072410_create_candidates.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/migrate/20120716082226_create_questions.rb" afterPath="$PROJECT_DIR$/db/migrate/20120716082226_create_questions.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/migrate/20120717080623_create_categories.rb" afterPath="$PROJECT_DIR$/db/migrate/20120717080623_create_categories.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/migrate/20120726055247_create_recruitment_tests.rb" afterPath="$PROJECT_DIR$/db/migrate/20120726055247_create_recruitment_tests.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/migrate/20120726085036_create_schedules.rb" afterPath="$PROJECT_DIR$/db/migrate/20120726085036_create_schedules.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/migrate/20120730051927_create_answers.rb" afterPath="$PROJECT_DIR$/db/migrate/20120730051927_create_answers.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/migrate/20121114063714_recreate_settings.rb" afterPath="$PROJECT_DIR$/db/migrate/20121114063714_recreate_settings.rb" />
     </list>
     <ignored path="Test.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -21,28 +37,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="database.yml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/database.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="0" selection-start="836" selection-end="836" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="20120910055307_change_column.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/db/migrate/20120910055307_change_column.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="84" selection-start="373" selection-end="373" vertical-scroll-proportion="0.0">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="20120927062812_time_taken_type_change.rb" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/db/migrate/20120927062812_time_taken_type_change.rb">
+      <file leaf-file-name="20121114063714_recreate_settings.rb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/db/migrate/20121114063714_recreate_settings.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="28" selection-start="167" selection-end="167" vertical-scroll-proportion="0.10760402">
+            <state line="2" column="0" selection-start="58" selection-end="58" vertical-scroll-proportion="0.043041606">
               <folding />
             </state>
           </provider>
@@ -61,22 +68,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/controllers/recruitment_tests_controller.rb" />
-        <option value="$PROJECT_DIR$/app/assets/stylesheets/custom.css.scss" />
-        <option value="$PROJECT_DIR$/app/models/question.rb" />
-        <option value="$PROJECT_DIR$/db/migrate/20140122071649_add_column_submitted_to_candidates.rb" />
-        <option value="$PROJECT_DIR$/app/views/user_mailer/admin_selected_result_email.html.erb" />
-        <option value="$PROJECT_DIR$/app/helpers/recruitment_tests_helper.rb" />
-        <option value="$PROJECT_DIR$/app/views/user_mailer/admin_result_email.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/user_mailer/admin_schedule_email.html.erb" />
-        <option value="$PROJECT_DIR$/app/models/answer.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/answers_controller.rb" />
-        <option value="$PROJECT_DIR$/app/views/answers/show.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/answers/_single_mode.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/answers/_additional_questions.html.erb" />
-        <option value="$PROJECT_DIR$/config/database.yml" />
-        <option value="$PROJECT_DIR$/db/migrate/20120910055307_change_column.rb" />
+        <option value="$PROJECT_DIR$/db/migrate/20120914090057_questiontotext.rb" />
+        <option value="$PROJECT_DIR$/db/migrate/20120917072044_datetimefield.rb" />
+        <option value="$PROJECT_DIR$/db/migrate/20120730051927_create_answers.rb" />
         <option value="$PROJECT_DIR$/db/migrate/20120927062812_time_taken_type_change.rb" />
+        <option value="$PROJECT_DIR$/db/migrate/20120716082226_create_questions.rb" />
+        <option value="$PROJECT_DIR$/db/migrate/20121005080310_addcreateby.rb" />
+        <option value="$PROJECT_DIR$/db/migrate/20120726055247_create_recruitment_tests.rb" />
+        <option value="$PROJECT_DIR$/db/migrate/20121011103148_add_feedback_to_result.rb" />
+        <option value="$PROJECT_DIR$/db/migrate/20121114063714_recreate_settings.rb" />
+        <option value="$PROJECT_DIR$/db/migrate/20121029070748_create_settings.rb" />
+        <option value="$PROJECT_DIR$/db/migrate/20120717080623_create_categories.rb" />
+        <option value="$PROJECT_DIR$/db/migrate/20121029073405_cutoff.rb" />
+        <option value="$PROJECT_DIR$/db/migrate/20120726085036_create_schedules.rb" />
+        <option value="$PROJECT_DIR$/db/migrate/20131010055748_add_remote_column_in_candidate.rb" />
+        <option value="$PROJECT_DIR$/db/migrate/20120710072410_create_candidates.rb" />
+        <option value="$PROJECT_DIR$/db/migrate/20140122071649_add_column_submitted_to_candidates.rb" />
       </list>
     </option>
   </component>
@@ -191,6 +198,28 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="RakeRunConfigurationType" factoryName="Rake">
+      <module name="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs />
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_NAME" VALUE="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ARGS" VALUE="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ATTACHED_TEST_FRAMEWORKS" VALUE="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_TRACE" VALUE="false" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_DRYRUN" VALUE="false" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_PREREQS" VALUE="false" />
+      <method />
+    </configuration>
     <configuration default="true" type="RSpecRunConfigurationType" factoryName="RSpec">
       <predefined_log_file id="RUBY_RSPEC" enabled="true" />
       <module name="" />
@@ -476,92 +505,65 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/views/user_mailer/admin_result_email.html.erb">
+    <entry file="file://$PROJECT_DIR$/db/migrate/20120716082226_create_questions.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="69" column="105" selection-start="2485" selection-end="2485" vertical-scroll-proportion="-6.0" />
+        <state line="9" column="0" selection-start="264" selection-end="317" vertical-scroll-proportion="0.19368723">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/answers/_question.html.erb">
+    <entry file="file://$PROJECT_DIR$/db/migrate/20121010110008_image_in_question.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="30" selection-start="697" selection-end="697" vertical-scroll-proportion="0.4622496" />
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/answers/_each_mode.html.erb">
+    <entry file="file://$PROJECT_DIR$/db/migrate/20120726055247_create_recruitment_tests.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+        <state line="11" column="22" selection-start="379" selection-end="379" vertical-scroll-proportion="0.23672883">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/user_mailer/admin_schedule_email.html.erb">
+    <entry file="file://$PROJECT_DIR$/db/migrate/20120717080623_create_categories.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="33" selection-start="551" selection-end="551" vertical-scroll-proportion="0.8986175" />
+        <state line="4" column="23" selection-start="146" selection-end="146" vertical-scroll-proportion="0.08608321">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/user_mailer/schedule_email.html.erb">
+    <entry file="file://$PROJECT_DIR$/db/migrate/20121224072843_create_delayed_jobs.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="0" selection-start="207" selection-end="406" vertical-scroll-proportion="0.34562212" />
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/mailers/user_mailer.rb">
+    <entry file="file://$PROJECT_DIR$/db/migrate/20120726085036_create_schedules.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="0" selection-start="286" selection-end="286" vertical-scroll-proportion="0.29475984" />
+        <state line="7" column="39" selection-start="240" selection-end="240" vertical-scroll-proportion="0.15064563">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/answer.rb">
+    <entry file="file://$PROJECT_DIR$/db/migrate/20120710072410_create_candidates.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="89" column="62" selection-start="2415" selection-end="2415" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/answers/show.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="0" selection-start="563" selection-end="563" vertical-scroll-proportion="0.37292162" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/answers/_single_mode.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="174" selection-start="1510" selection-end="1510" vertical-scroll-proportion="-7.125" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/answers/_additional_questions.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="123" selection-start="2831" selection-end="2831" vertical-scroll-proportion="0.28503564" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/answers_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/database.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="0" selection-start="836" selection-end="836" vertical-scroll-proportion="0.0">
+        <state line="16" column="42" selection-start="491" selection-end="491" vertical-scroll-proportion="0.34433284">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/db/migrate/20120910055307_change_column.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="84" selection-start="373" selection-end="373" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20121029073405_cutoff.rb">
-      <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20120928051834_create_templates.rb">
+    <entry file="file://$PROJECT_DIR$/db/migrate/20121114063714_recreate_settings.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20120927062812_time_taken_type_change.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="28" selection-start="167" selection-end="167" vertical-scroll-proportion="0.10760402">
+        <state line="2" column="0" selection-start="58" selection-end="58" vertical-scroll-proportion="0.043041606">
           <folding />
         </state>
       </provider>

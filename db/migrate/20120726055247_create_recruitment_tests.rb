@@ -9,6 +9,7 @@ class CreateRecruitmentTests < ActiveRecord::Migration
       t.float :mark_percentage
       t.string  :is_passed
       t.string :comments
+      t.text :feedback
       t.timestamps
     end
   end
