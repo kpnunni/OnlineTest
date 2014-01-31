@@ -68,7 +68,7 @@ gem 'unicorn'
 gem 'prawn_rails'
 gem 'coderay'
 gem "RedCloth"
-#gem 'rails_12factor'
+gem 'rails_12factor'
  # add these gems to help with the transition:
 gem 'protected_attributes'
 #gem 'rails-observers'
