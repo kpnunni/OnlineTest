@@ -53,6 +53,12 @@ GEM
     coffee-script-source (1.6.3)
     commonjs (0.2.7)
     debug_inspector (0.0.2)
+    delayed_job (4.0.0)
+      activesupport (>= 3.0, < 4.1)
+    delayed_job_active_record (4.0.0)
+      activerecord (>= 3.0, < 4.1)
+      delayed_job (>= 3.0, < 4.1)
+    delayed_task (0.1.4)
     erubis (2.7.0)
     execjs (2.0.2)
     hashery (2.1.1)
@@ -180,6 +186,8 @@ DEPENDENCIES
   bullet
   coderay
   coffee-rails
+  delayed_job_active_record
+  delayed_task (= 0.1.4)
   jquery-ui-rails
   less-rails
   mysql2
