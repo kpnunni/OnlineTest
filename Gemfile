@@ -1,11 +1,13 @@
 source 'https://rubygems.org'
 ruby '2.0.0'
 gem 'rails', '4.0.2'
+gem "twitter-bootstrap-rails"
+gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
+
+
 gem "delayed_job_active_record"
 gem "delayed_task", "0.1.4"
 gem "therubyracer"
-gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
-gem "twitter-bootstrap-rails"
   #gem 'bootstrap-sass'
 #gem "daemons"
 gem "nested_form"
@@ -18,14 +20,14 @@ gem 'mysql2'
 gem 'paperclip'
 # Gems used only for assets and not required
 # in production environments by default.
-group :assets do
+#group :assets do
   #gem 'bootstrap-sass'
    # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   #gem 'therubyracer', :platforms => :ruby
   gem 'jquery-ui-rails'
   gem 'uglifier'
   #gem 'turbo-sprockets-rails3'
-end
+#end
 
 #gem 'cache_digests'
 gem 'ransack'
