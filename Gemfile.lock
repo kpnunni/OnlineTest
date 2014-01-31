@@ -66,6 +66,7 @@ GEM
     i18n (0.6.9)
     jquery-ui-rails (4.1.1)
       railties (>= 3.1.0)
+    json (1.8.1)
     kgio (2.8.1)
     less (2.4.0)
       commonjs (~> 0.2.7)
@@ -169,6 +170,9 @@ GEM
       rails (>= 3.1)
       railties (>= 3.1)
     tzinfo (0.3.38)
+    uglifier (2.4.0)
+      execjs (>= 0.3.0)
+      json (>= 1.8.0)
     unicorn (4.8.1)
       kgio (~> 2.6)
       rack
@@ -203,5 +207,6 @@ DEPENDENCIES
   sass-rails
   therubyracer
   twitter-bootstrap-rails
+  uglifier
   unicorn
   will_paginate
