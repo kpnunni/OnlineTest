@@ -103,10 +103,10 @@ Test::Application.routes.draw do
       get :reset_pass
     end
   end
-  match '/signin', to: 'sessions#new'
-  match '/signout', to: 'sessions#destroy', via: :delete
+  get '/signin', to: 'sessions#new'
+  post '/signout', to: 'sessions#destroy', via: :delete
 
-  match 'assync_get_status' => 'controller#assync_get_status'
+  #match 'assync_get_status' => 'controller#assync_get_status'
 
 
 

@@ -1,12 +1,13 @@
 @import "bootstrap";
+//@import 'bootstrap-datetimepicker';
 /* universal */
 html {
-    background-image: url(<%= asset_path("bg9.jpg") %>);
+    background-image: url( image_path("bg9.jpg") );
     background-position: left top;
 }
 
 body{
-    background-image: url(<%= asset_path("bg9.jpg") %>);
+    background-image: url( image_path("bg9.jpg") );
     height: 100%;
     margin: 0;
     padding: 0;
@@ -158,7 +159,7 @@ header {
 
     border-top: 1px solid #eaeaea;
     color: #999;
-    background-image: url(<%= asset_path('bg5.png') %>);
+    background-image: url( image_path('bg5.png') );
 }
 
 header a {
@@ -209,7 +210,7 @@ $grayMediumLight: #eaeaea;
 aside {
     section {
         padding: 10px 0;
-        border-top: 1px solid $grayLighter;
+        border-top: 1px solid gray;
         &:first-child {
             border: 0;
             padding-top: 0;
@@ -251,9 +252,9 @@ aside {
     li {
         overflow: auto;
         padding: 10px 0;
-        border-top: 1px solid $grayLighter;
+        border-top: 1px solid gray;
         &:last-child {
-            border-bottom: 1px solid $grayLighter;
+            border-bottom: 1px solid gray;
         }
     }
 }
@@ -317,7 +318,7 @@ select {
     width: 240px;
     height: 34px;
     overflow: hidden;
-    background: url(<%= asset_path("new_arrow.png") %>) no-repeat right #ddd;
+    background: url( image_path("new_arrow.png") ) no-repeat right #ddd;
 }
 
 
@@ -467,7 +468,7 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
     padding:10px;
 }
 .home_table tr{
-    background-image: url(<%= asset_path("bg_topbar.gif") %>);
+    background-image: url( image_path("bg_topbar.gif") );
 }
 //.pagination {
 //    padding: 3px;
@@ -593,14 +594,14 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
     valign:top;
 }
 .filter_table{
-    background-image: url(<%= asset_path('ui-bg_gloss-wave_35_f6a828_500x100.png') %>) ;
+    background-image: url( image_path('ui-bg_gloss-wave_35_f6a828_500x100.png') ) ;
     width: 100%;
     border-radius:10px;
 
 }
 .notice{
     background-color: #DCEAC8;
-    background-image: url(<%= asset_path('icon_success_lrg.gif') %>) ;
+    background-image: url( image_path('icon_success_lrg.gif') ) ;
     background-repeat:no-repeat;
     background-position:right;
     color:  #000000;
@@ -614,7 +615,7 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
     border: 1px solid #8b161a;
     padding: 10px;
     background-color: #ffd0bc;
-    background-image: url(<%= asset_path('icon_warning_lrg.gif') %>) ;
+    background-image: url( image_path('icon_warning_lrg.gif') ) ;
     background-repeat:no-repeat;
     background-position:right;
     border-radius:10px;
@@ -625,7 +626,7 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
     border: 2px solid red;
     padding: 10px;
     background-color: pink ;
-    background-image: url(<%= asset_path('icon_error_lrg.gif') %>) ;
+    background-image: url( image_path('icon_error_lrg.gif') ) ;
     background-repeat:no-repeat;
     background-position:right;
     border-radius:10px;
@@ -636,7 +637,7 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
     border: 1px solid green;
     padding: 10px;
     background-color: #98fb98;
-    background-image: url(<%= asset_path('icon_warning_lrg.gif') %>) ;
+    background-image: url( image_path('icon_warning_lrg.gif') ) ;
     background-repeat:no-repeat;
     background-position:right;
     border-radius:10px;
@@ -648,7 +649,7 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
 
 .index_table{
     width: 100%;
-    background-image: url(<%= asset_path('tbl_bg2.png') %>) ;
+    background-image: url( image_path('tbl_bg2.png') ) ;
     border-radius: 10px;
 }
 table.index_table tr:nth-child(even){
@@ -676,7 +677,7 @@ table.index_table tr:hover {
     font-size:14px;
     font-weight:bold;
     //text-align:center;
-    background-image: url(<%= asset_path('icon_error_lrg.gif') %>) ;
+    background-image: url( image_path('icon_error_lrg.gif') ) ;
     background-repeat:no-repeat;
     background-position:right;
 
@@ -718,11 +719,11 @@ a:active  { color: #ccc }  /* active links    */
 }
 
 .pretty th .asc {
-    background-image: url(<%= asset_path("arrow-up.gif") %>);
+    background-image: url( image_path("arrow-up.gif") );
 }
 
 .pretty th .desc {
-    background-image: url(<%= asset_path("arrow-down.gif") %>);
+    background-image: url( image_path("arrow-down.gif") );
 }
 
 .ordering {
@@ -747,7 +748,7 @@ a:active  { color: #ccc }  /* active links    */
     margin:10px 0 10px 40px; padding:0px;
 }
 #report th {
-    background:#7CB8E2 url(<%= asset_path("header_bkg.png") %>) repeat-x scroll center left;
+    background:#7CB8E2 url( image_path("header_bkg.png") ) repeat-x scroll center left;
     color:#fff;
     padding:7px 15px;
     text-align:left;
@@ -758,11 +759,11 @@ a:active  { color: #ccc }  /* active links    */
     padding:7px 15px;
 }
 #report tr.odd td {
-    background:#fff url(<%= asset_path("row_bkg.png") %>) repeat-x scroll center left;
+    background:#fff url( image_path("row_bkg.png") ) repeat-x scroll center left;
     cursor:pointer;
 }
 #report div.arrow {
-    background:transparent url(<%= asset_path("arrows.png") %>) no-repeat scroll 0px -16px;
+    background:transparent url( image_path("arrows.png") ) no-repeat scroll 0px -16px;
     width:16px;
     height:16px;
     display:block;
@@ -772,7 +773,7 @@ a:active  { color: #ccc }  /* active links    */
 }
 
 .table {
-    background-image: url(<%= asset_path('tbl_bg2.png') %>) ;
+    background-image: url( image_path('tbl_bg2.png') ) ;
     border: 1px solid black;
     display: table;
     background-color: #e0ffff;
