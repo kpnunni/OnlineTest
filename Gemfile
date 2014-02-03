@@ -1,14 +1,13 @@
 source 'https://rubygems.org'
 ruby '2.0.0'
 gem 'rails', '4.0.2'
+gem "therubyracer"
+gem "less-rails"
 gem "twitter-bootstrap-rails"
-gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
-
 
 gem "delayed_job_active_record"
 gem "delayed_task", "0.1.4"
-gem "therubyracer"
-  #gem 'bootstrap-sass'
+   #gem 'bootstrap-sass'
 #gem "daemons"
 gem "nested_form"
 
