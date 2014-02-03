@@ -2,8 +2,8 @@ source 'https://rubygems.org'
 ruby '2.0.0'
 gem 'rails', '4.0.2'
 gem "therubyracer"
-gem "less-rails"
-gem "twitter-bootstrap-rails"
+#gem "less-rails"
+#gem "twitter-bootstrap-rails"
 
 gem "delayed_job_active_record"
 gem "delayed_task", "0.1.4"

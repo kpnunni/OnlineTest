@@ -51,7 +51,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
-    commonjs (0.2.7)
     debug_inspector (0.0.2)
     delayed_job (4.0.0)
       activesupport (>= 3.0, < 4.1)
@@ -68,11 +67,6 @@ GEM
       railties (>= 3.1.0)
     json (1.8.1)
     kgio (2.8.1)
-    less (2.4.0)
-      commonjs (~> 0.2.7)
-    less-rails (2.4.2)
-      actionpack (>= 3.1)
-      less (~> 2.4.0)
     libv8 (3.16.14.3)
     mail (2.5.4)
       mime-types (~> 1.16)
@@ -164,11 +158,6 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     ttfunk (1.0.3)
-    twitter-bootstrap-rails (2.2.8)
-      actionpack (>= 3.1)
-      execjs
-      rails (>= 3.1)
-      railties (>= 3.1)
     tzinfo (0.3.38)
     uglifier (2.4.0)
       execjs (>= 0.3.0)
@@ -193,7 +182,6 @@ DEPENDENCIES
   delayed_job_active_record
   delayed_task (= 0.1.4)
   jquery-ui-rails
-  less-rails
   mysql2
   nested_form
   paperclip
@@ -206,7 +194,6 @@ DEPENDENCIES
   ransack
   sass-rails
   therubyracer
-  twitter-bootstrap-rails
   uglifier
   unicorn
   will_paginate
