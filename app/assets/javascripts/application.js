@@ -27,13 +27,7 @@
             track: true
         });
 
-        jQuery(document).ready(function() {
-
-
-            jQuery("#rs7").hide();
-            jQuery("#rs30").hide();
-            jQuery("#sh7").hide();
-            jQuery("#sh30").hide();
+        window.onload = function() {
          jQuery('#datePicker1').datepicker();
          jQuery('#schedule_sh_date').datetimepicker({dateFormat: "dd-mm-yy", hideIfNoPrevNext: true, minDate: 0,timeFormat: "hh:mm tt", hourGrid: 6,minuteGrid: 10,
              beforeShow: function(input, inst)
@@ -53,7 +47,7 @@
                          jQuery(this).parent().siblings().removeClass('highlighted');
                     }
                 });
-        });
+        };
     function show_submitting()
     {
         document.getElementById('submitting').show();
