@@ -12,7 +12,7 @@
 //
 //= require jquery.js
 //= require jquery_ujs.js
- //= require_tree .
+//= require_tree .
 
 //      jQuery.noConflict(true);
 
