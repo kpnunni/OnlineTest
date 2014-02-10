@@ -29,6 +29,9 @@ class RecruitmentTestsController < ApplicationController
       render json: @recruitment_test.errors, status: :unprocessable_entity
     end
   end
+  def feedback
+     @results = RecruitmentTest.where("feedback <> ''").reverse.group_by {|result| result.created_at.beginning_of_day}
+   end
   def destroy
     @recruitment_test = RecruitmentTest.find(params[:id])
     @recruitment_test.destroy
@@ -43,6 +46,11 @@ class RecruitmentTestsController < ApplicationController
       flash[:error]= 'Select results to sent.'
       redirect_to recruitment_tests_path
     end
+  end
+  def clear_answers
+    @recruitment_test = RecruitmentTest.find(params[:id])
+    @recruitment_test.candidate.answers.destroy_all
+    redirect_to recruitment_tests_path, notice: "Answers cleared for #{@recruitment_test.candidate.name}"
   end
   def pass_or_fail
     @recruitment_test = RecruitmentTest.find(params[:id])

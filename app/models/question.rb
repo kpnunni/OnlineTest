@@ -14,7 +14,7 @@ class Question < ActiveRecord::Base
   has_attached_file :question_image
   accepts_nested_attributes_for :options, :allow_destroy => true,:reject_if => proc { |attributes| attributes['option'].blank? }
   accepts_nested_attributes_for :answers
-  scope :additional, -> {where("category_id in (?)", Category.where(category: "Additional").map(&:id))}
+  scope :additional, where("category_id in (?)", Category.where(category: "Additional").map(&:id))
   def options_status
     if self.question.empty? && self.question_image_file_name.nil?
       self.errors[:base]<<"Question or image should not be blank"
@@ -36,4 +36,25 @@ class Question < ActiveRecord::Base
   #def to_param
   #  "#{id} #{question.first(50)}".parameterize
   #end
+  def next_question(exam_id,additional)
+    if additional
+      question_ids = Question.additional.order(:id).map(&:id)
+    else
+      @exam = Exam.where(id: exam_id).first
+      question_ids = @exam.questions.order(:category_id,:id).map(&:id)
+    end
+    next_q = question_ids[question_ids.index(self.id)+1]
+  end
+
+  def previous_question(exam_id,additional)
+    if additional
+      question_ids = Question.additional.order(:id).map(&:id)
+    else
+      @exam = Exam.where(id: exam_id).first
+      question_ids = @exam.questions.order(:category_id,:id).map(&:id)
+    end
+    prev_q = question_ids[question_ids.index(self.id)-1]
+    prev_q == question_ids[-1] ? nil : prev_q
+  end
+
 end

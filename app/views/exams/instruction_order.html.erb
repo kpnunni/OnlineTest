@@ -15,7 +15,7 @@
 <% end %>
 
 <script type="text/javascript">
-    window.onload = function() {
+  jQuery(document).ready(function() {
            jQuery("#order").sortable({
               connectWith: ".ordering",
               update : function () {
@@ -26,5 +26,5 @@
 
               }
           }).disableSelection();
-  }
+  });
 </script>

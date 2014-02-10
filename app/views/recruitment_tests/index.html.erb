@@ -28,9 +28,9 @@
 <div>
     <div style="text-align: left;float: left; width: 50%;">
         Per Page:
-        <%= link_to "30", recruitment_tests_path(per_page: 30), class: "btn btn-xs" %>
-        <%= link_to "40", recruitment_tests_path(per_page: 40), class: "btn btn-xs" %>
-        <%= link_to "50", recruitment_tests_path(per_page: 50), class: "btn btn-xs" %>
+        <%= link_to "30", recruitment_tests_path(params.merge(per_page: 30)), class: "btn btn-xs" %>
+        <%= link_to "40", recruitment_tests_path(params.merge(per_page: 40)), class: "btn btn-xs" %>
+        <%= link_to "50", recruitment_tests_path(params.merge(per_page: 50)), class: "btn btn-xs" %>
     </div>
     <div style="text-align: right; float: right; width: 50%;">
         <%= link_to "PRINT", '#', onclick: "javascript:print()", id: "print_link", class: "btn btn-xs" %>
@@ -48,7 +48,7 @@
           <tr>
             <th width="3%" id="hide"><input type="checkbox" onClick="toggle1(this)" title="Select/Unselect all" /></th>
             <th width="20%">Candidate Name</th>
-            <th width="25%">Exam</th>
+            <th width="20%">Exam</th>
             <th width="7%" >Total questions</th>
             <th width="7%" > Questions attended </th>
             <th width="6%"><%= sortable "right_answers"%></th>
@@ -56,6 +56,7 @@
             <th width="20%">Status of Selection</th>
             <!--<th width="15%">Comments</th>-->
             <th width="2%"> </th>
+            <th width="5%"> </th>
           </tr>
 
           <% @recruitment_tests.each do |recruitment_test| %>
@@ -98,7 +99,7 @@
                   <% end %>
 
                 </td>
-                <!--<td class="lft"><%#= recruitment_test.comments%></td>-->
+                <td><%= link_to_if(recruitment_test.candidate.answers.present?, image_tag("qno.png") , clear_answers_recruitment_test_path(recruitment_test), title: "Delete all the answers of this candidate", confirm: "Sure?") %></td>
 
                 <td class="see">
                   <div class="arrow">
@@ -112,7 +113,17 @@
               </tr>
           <% end %>
         </table>
-        <br /> <%= button_to "Sent selected result to admin's email",sent_mail_recruitment_tests_path(:id=>33), data: { confirm: 'Are you sure?' } , class:"btn btn-success", id: "hide" %>
+
+        <br />
+          <div>
+    <div style="text-align: left;float: left; width: 50%;">
+      <%= button_to "Sent selected result to admin's email",sent_mail_recruitment_tests_path(:id=>33), data: { confirm: 'Are you sure?' } , class:"btn btn-success", id: "hide" %>
+    </div>
+    <div style="text-align: right; float: right; width: 50%;">
+      <%= link_to "Candidate Feedback", feedback_recruitment_tests_path, class: "btn btn-xs" %>
+    </div>
+</div>
+
     <% end %>
     <%= pagination_links(@recruitment_tests) %>
 <% end %>
@@ -148,7 +159,7 @@
 </script>
 
 <script type="text/javascript">
-    window.onload = function(){
+    jQuery(document).ready(function(){
         jQuery("#report tr:odd").addClass("odd");
         jQuery("#report tr:not(.odd)").hide();
         jQuery("#report tr:first-child").show();
@@ -157,5 +168,5 @@
             jQuery(this).parent("tr").next("tr").toggle();
             jQuery(this).find(".arrow").toggleClass("up");
         });
-    }
+    });
 </script>

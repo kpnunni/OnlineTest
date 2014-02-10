@@ -16,7 +16,7 @@ class HomesController < ApplicationController
     @results30 =RecruitmentTest.includes([:candidate]).where("completed_on between ? and ?",Date.today.beginning_of_month,Date.today.end_of_month).reverse_order
 
     @questions=Question.includes([:options,:category,:complexity,:type]).last(10).reverse
-    @candidates=RecruitmentTest.includes([:candidate]).where(is_passed: "Passed").last(10).reverse
+    @candidates=RecruitmentTest.includes([:candidate]).find_all_by_is_passed("Passed").last(10).reverse
 
   end
 

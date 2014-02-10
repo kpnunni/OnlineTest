@@ -46,15 +46,19 @@ Test::Application.routes.draw do
   resources :recruitment_tests do
     collection do
       post :sent_mail
+      get :feedback
     end
     member do
       get :pass_or_fail
+      get :clear_answers
     end
   end
   resources :instructions
   resources :answers do
     collection do
       get :candidate_detail
+      get :feed_back
+      get :additional
       get :instructions
       get :blank
       get :make
@@ -65,17 +69,16 @@ Test::Application.routes.draw do
     member do
       get :congrats
       get :clogin
-      put :candidate_update
-      get :feed_back
+      patch :candidate_update
     end
   end
   resources :categories
   resources :users do
     member do
-      put :delete
+      patch :delete
       get :profile
       get :chgpass
-      put :updatepass
+      patch :updatepass
     end
 
   end
