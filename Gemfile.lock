@@ -64,8 +64,6 @@ GEM
     hashery (2.1.1)
     hike (1.2.3)
     i18n (0.6.9)
-    jquery-ui-rails (4.1.1)
-      railties (>= 3.1.0)
     json (1.8.1)
     kgio (2.8.1)
     less (2.4.0)
@@ -192,7 +190,6 @@ DEPENDENCIES
   coffee-rails
   delayed_job_active_record
   delayed_task (= 0.1.4)
-  jquery-ui-rails
   less-rails
   mysql2
   nested_form

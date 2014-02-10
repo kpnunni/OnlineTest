@@ -23,7 +23,7 @@ gem 'paperclip'
   #gem 'bootstrap-sass'
    # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   #gem 'therubyracer', :platforms => :ruby
-  gem 'jquery-ui-rails'
+  #gem 'jquery-ui-rails'
   gem 'uglifier'
   #gem 'turbo-sprockets-rails3'
 #end
