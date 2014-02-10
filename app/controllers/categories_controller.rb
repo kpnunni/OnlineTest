@@ -1,7 +1,7 @@
 class CategoriesController < ApplicationController
   before_filter :chk_user ,:except =>[ :update ,:create]
   def chk_user
-    if !my_roles.include?('Manage Questions')
+    if !any_role?('Client', 'Manage Questions')
       redirect_to '/homes/index'
     end
   end

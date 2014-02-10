@@ -3,7 +3,7 @@ class CandidatesController < ApplicationController
   before_filter :chk_user ,:except =>[ :update ,:create]
 
   def chk_user
-    if !my_roles.include?('Manage Candidates')
+    if !any_role?('Client', 'Manage Candidates')
       redirect_to '/homes/index'
     end
   end

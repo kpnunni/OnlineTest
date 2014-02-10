@@ -3,7 +3,7 @@ class Candidate < ActiveRecord::Base
   attr_accessible :done,:recruitment_test_attributes,:experiences_attributes, :qualifications_attributes ,:user_attributes,:exp,:qual,:name, :address ,:phone1, :phone2 , :technology , :certification ,
                   :skills ,:resume,:user_id,:resume_file_name,:resume_content_type,:resume_file_size
   
-  has_many :answers ,:dependent => :destroy
+  has_many :answers , :dependent => :destroy
   has_many :experiences ,:dependent => :destroy
   has_many :qualifications ,:dependent => :destroy
   belongs_to :user

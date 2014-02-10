@@ -42,7 +42,7 @@
               <th>Scheduled?</th>
               <th>Exam Status</th>
               <th></th>
-              <% if my_roles.include?('Schedule')   %>
+              <% if any_role?('Client', 'Schedule')   %>
                   <th></th>
               <% end %>
             </tr>

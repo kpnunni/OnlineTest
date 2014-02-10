@@ -5,7 +5,11 @@ class Answer < ActiveRecord::Base
   belongs_to :candidate
   belongs_to :question
 
-
+  scope :priced, (lambda do |price|
+     where(id: price) if price=="low"
+     where(id: price) if price=="mid"
+     where(id: price) if price=="high"
+  end)
   def  set_answer
      question=self.question
     ans=""

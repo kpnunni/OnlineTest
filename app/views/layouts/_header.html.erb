@@ -21,29 +21,33 @@
                   <li><%= link_to "Users", '/users' %></li>
                   <% end %>
 
-                  <%if my_roles.include?('Manage Candidates')   %>
+                  <%if admin?  %>
+                  <li><%= link_to "Clients", '/clients' %></li>
+                  <% end %>
+
+                  <%if any_role?('Manage Candidates','Client') %>
                   <li><%= link_to "Candidates", '/candidates' %></li>
                   <% end %>
 
-                  <%if my_roles.include?('Add Questions Only') ||my_roles.include?('Manage Questions') ||my_roles.include?('Add Questions')  %>
+                  <%if any_role?('Client','Add Questions Only', 'Manage Questions', 'Add Questions')%>
                   <li><%= link_to "Question Bank",  '/questions' %></li>
                    <% end %>
 
-                  <%if my_roles.include?('Manage Exams')   %>
+                  <%if any_role?('Client','Manage Exams')   %>
                   <li><%= link_to "Exams", '/exams' %></li>
                   <% end %>
 
-                  <%if my_roles.include?('Schedule')||my_roles.include?('Re Schedule')||my_roles.include?('Cancel Schedule')   %>
+                  <%if any_role?('Client', 'Schedule', 'Re Schedule', 'Cancel Schedule')   %>
                   <li><%= link_to "Schedules", '/schedules' %></li>
                    <% end %>
 
-                  <%if my_roles.include?('Validate Result')||my_roles.include?('View Result')   %>
+                  <%if any_role?('Client', 'Validate Result', 'View Result')   %>
                   <li><%= link_to "Results", '/recruitment_tests' %></li>
                    <% end %>
 
                 </ul>
               </li>
-              <%if my_roles.include?('Manage Templates')   %>
+              <%if  any_role?('Client', 'Manage Templates')   %>
               <li  class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   Email Templates <b class="caret"></b>
@@ -63,7 +67,7 @@
                 My Account <b class="caret"></b>
               </a>
         <ul class="dropdown-menu">
-           <%if admin? %>
+           <%if admin? || any_role?('Client') %>
             <li> <%= link_to "Settings",'/settings/edit' %></li>
            <% end %>
              <li> <%= link_to "Profile", profile_user_path(current_user) %></li>

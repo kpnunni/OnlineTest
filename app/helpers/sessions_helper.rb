@@ -30,6 +30,9 @@ module SessionsHelper
     end
   end
 
+  def any_role?(*roles)
+     (my_roles - roles).size != my_roles.size
+  end
   def negative
     @negative ||= Setting.find_by_name('negative_mark')
   end

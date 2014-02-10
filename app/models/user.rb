@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 
    has_and_belongs_to_many :roles
    has_one :candidate  ,:dependent => :destroy
+   has_one :client  ,:dependent => :destroy
    before_create :set_alive
    before_create :sent_welcome_email
    #  after_save :chk_role
@@ -54,6 +55,9 @@ class User < ActiveRecord::Base
      @users.delete_if  {|usr| usr.id==current_user_id}
    end
 
+   def client?
+     has_role?("Client")
+   end
     def encrypt_password
       self.salt = make_salt if new_record?
       self.password = encrypt(login_password)

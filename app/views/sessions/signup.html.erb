@@ -1,8 +1,14 @@
-<% if @user.nil? %>
+<% if @candidate %>
     <h1>Candidate Registration</h1>
     <%= nested_form_for @candidate ,:url=>'/sessions/registration', :html => { :onsubmit=>"show_submitting();" , :multipart => true } do |f| %>
         <%=  render 'candidates/form_fields', f: f %>
         <%= f.submit "Register" ,:name=>'can',:value=>'Register',class: "btn btn-large btn-primary" ,:disable_with=>"Registering.." %>
+    <% end %>
+<% elsif @client %>
+    <h1>Client Registration</h1>
+    <%= nested_form_for @client ,:url=>'/sessions/registration', :html => { :onsubmit=>"show_submitting();" , :multipart => true } do |f| %>
+        <%=  render 'clients/form_fields', f: f %>
+        <%= f.submit "Register" ,:name=>'clnt',:value=>'Register',class: "btn btn-large btn-primary" ,:disable_with=>"Registering.." %>
     <% end %>
 <% else %>
     <h1>Employee Registration</h1>

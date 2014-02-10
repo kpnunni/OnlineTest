@@ -75,6 +75,9 @@ class SessionsController < ApplicationController
   def signup
     if params[:as]=="emp"
       @user=User.new
+    elsif params[:as]=="client"
+      @client = Client.new
+      @client.build_user
     else
       @candidate=Candidate.new
       @candidate.build_user
@@ -130,6 +133,16 @@ class SessionsController < ApplicationController
         redirect_to success_sessions_path(:as=>"can"), notice: 'Candidate was successfully created.'
       else
         render 'signup'
+      end
+    elsif params[:clnt]=="Register"
+      @client = Client.new(params[:client])
+      @client.user.encrypt_password
+      @client.user.roles.push(Role.find_by_role_name('Client'))
+      if @client.save
+        sign_in @client.user
+        redirect_to  root_path, notice: 'Client was successfully created.'
+      else
+        render action: 'signup'
       end
     else
         @user=User.new(params[:user])
