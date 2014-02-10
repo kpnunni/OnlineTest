@@ -6,8 +6,11 @@ class ExamsController < ApplicationController
     end
   end
   def index
-    @exams = Exam.filtered(params[:search]).paginate(:page => params[:page], :per_page => 20)
-    @users=Exam.select(:created_by).uniq
+    if client?
+      @exams = Exam.filtered(params[:search],client).paginate(:page => params[:page], :per_page => 20)
+    else
+      @exams = Exam.filtered(params[:search],nil).paginate(:page => params[:page], :per_page => 20)
+    end
   end
   def instruction
     @exam=Exam.find(params[:id])
@@ -31,6 +34,7 @@ class ExamsController < ApplicationController
   end
   def create
     @exam = Exam.new(params[:exam])
+    @exam.client = client
     @instruction=Instruction.new
     @exam.subj.values.each do |sub|
       if sub.to_i<0

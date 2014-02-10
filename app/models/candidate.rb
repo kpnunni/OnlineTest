@@ -8,6 +8,7 @@ class Candidate < ActiveRecord::Base
   has_many :qualifications ,:dependent => :destroy
   belongs_to :user
   belongs_to :schedule
+  belongs_to :client
   has_one :recruitment_test ,:dependent => :destroy
   has_attached_file :resume
 
@@ -39,8 +40,13 @@ class Candidate < ActiveRecord::Base
     self.user.roles.push(Role.find_by_role_name('Candidate') )
   end
 
-  def self.filtered search
-    @candidates = Candidate.order('created_at DESC').includes([:user, :schedule, :recruitment_test]).all
+  def self.filtered(search,client)
+    if client
+      client_user = User.find(client).client
+      @candidates = client_user.candidates.order('created_at DESC').includes([:user, :schedule, :recruitment_test]).all
+    else
+      @candidates = Candidate.order('created_at DESC').includes([:user, :schedule, :recruitment_test]).all
+    end
     @candidates.select! {|can| can.name.include?(search[:name])                                         } if search.try(:[],:name).present?
     @candidates.select! {|can| can.user.user_email.include?(search[:email])                             } if search.try(:[],:email).present?
     @candidates.select! {|can| can.phone1.include?(search[:phone])||can.phone2.include?(search[:phone]) } if search.try(:[],:phone).present?

@@ -8,6 +8,7 @@ class Question < ActiveRecord::Base
   belongs_to :category
   belongs_to :complexity
   belongs_to :type
+  belongs_to :client
   has_many :answers ,:dependent => :destroy
   has_many :options  ,:dependent => :destroy
   has_and_belongs_to_many :exams
@@ -23,8 +24,12 @@ class Question < ActiveRecord::Base
       self.errors[:base]<<"Options can't be empty"
     end
   end
-  def self.filtered search
-    @questions = Question.order('created_at DESC').includes([:options,:category,:complexity,:type,:exams]).all
+  def self.filtered(search,client)
+    if client
+      @questions = Client.find(client).questions.order('created_at DESC').includes([:options,:category,:complexity,:type,:exams]).all
+    else
+      @questions = Question.order('created_at DESC').includes([:options,:category,:complexity,:type,:exams]).all
+    end
     @questions.select! { |q| q.type_id == search[:type_id].to_i               } if search.try(:[],:type_id).present?
     @questions.select! { |q| q.complexity_id == search[:complexity_id].to_i   } if search.try(:[],:complexity_id).present?
     @questions.select! { |q| q.category_id == search[:category_id].to_i       } if search.try(:[],:category_id).present?

@@ -48,8 +48,8 @@
             <td width="60%" ></td>
             <th>Category:</th>
             <th>Complexity:</th>
-            <th>Type:</th>
-            <th>Created by:</th>
+            <!--<th>Type:</th>-->
+            <!--<th>Created by:</th>-->
             <th>From:</th>
             <th>To:</th>
             <th>Question:</th>
@@ -59,8 +59,8 @@
             <td width="60%" ></td>
             <td><%= select("search","category_id", @category.collect {|s| [s.category, s.id ] }, { :include_blank => true ,:selected =>params[:search]?params[:search][:category_id]:""},onchange: "this.form.submit();") %></td>
             <td><%= select("search","complexity_id", @complexity.collect {|s| [s.complexity, s.id ] }, { :include_blank => true,:selected =>params[:search]?params[:search][:complexity_id]:""},onchange: "this.form.submit();") %></td>
-            <td><%= select("search","type_id", @types.collect {|s| [s.question_type, s.id ] }, { :include_blank => true,:selected =>params[:search]?params[:search][:type_id]:""},onchange: "this.form.submit();") %></td>
-            <td><%= select("search","by", @users.collect {|s| s.created_by }, { :include_blank => true,:selected =>params[:search]?params[:search][:by]:""},onchange: "this.form.submit();") %></td>
+            <!--<td><%#= select("search","type_id", @types.collect {|s| [s.question_type, s.id ] }, { :include_blank => true,:selected =>params[:search]?params[:search][:type_id]:""},onchange: "this.form.submit();") %></td>-->
+            <!--<td><%#= select("search","by", @users.collect {|s| s.created_by }, { :include_blank => true,:selected =>params[:search]?params[:search][:by]:""},onchange: "this.form.submit();") %></td>-->
             <td><%= text_field_tag  "search[from]",params[:search]?params[:search]["from"]:""  , :class=>"text_box2" %></td>
             <td><%= text_field_tag  "search[to]",params[:search]?params[:search]["to"]:"" , :class=>"text_box2" %></td>
             <td align="right" ><%= text_field_tag "search[text]" , params[:search]?params[:search]["text"]:"",:class=>"text_box2"  %></td>

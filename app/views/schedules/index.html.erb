@@ -4,13 +4,13 @@
   <table  cellpadding="5" class="filter_table"   >
     <tr>
       <td width="60%" ></td>
-      <th>Created by:</th>
+      <!--<th>Created by:</th>-->
       <th>From:</th>
       <th>To:</th>
     </tr>
     <tr>
       <td width="60%" ></td>
-      <td><%= select("search","by", @users.collect {|s| s.created_by }, { :include_blank => true,:selected => params[:search] ? params[:search][:by] :"" },onchange: "this.form.submit();") %></td>
+      <!--<td><%#= select("search","by", @users.collect {|s| s.created_by }, { :include_blank => true,:selected => params[:search] ? params[:search][:by] :"" },onchange: "this.form.submit();") %></td>-->
       <td><%= text_field_tag   "search[from]",params[:search] ? params[:search]["from"] : "",  :class=>"text_box2" %></td>
       <td><%= text_field_tag  "search[to]",params[:search] ? params[:search]["to"] : "",:class=>"text_box2" %></td>
       <td class="dropt" title="search" ><%=image_submit_tag 'filter.png' , :class => 'search' %></td>

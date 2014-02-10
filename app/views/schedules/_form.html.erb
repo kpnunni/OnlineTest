@@ -1,5 +1,5 @@
 <% if @candidates.empty?   %>
-    <h3><%="No candidates to schedule the exam" %></h3>
+    <h3> No candidates to schedule the exam </h3>
     <%= link_to image_tag('adduser.png'), new_candidate_path,  :title=>"add new candidate"   %>
 <% else %>
     <%= form_for @schedule, :html => { :onsubmit=>"show_submitting();" } do |f| %>

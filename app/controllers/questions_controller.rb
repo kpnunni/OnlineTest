@@ -2,21 +2,25 @@ class QuestionsController < ApplicationController
   #layout false ,:only => :show
   before_filter :chk_user
   def chk_user
-    if !current_user.has_role?('Add Questions Only','Manage Questions','Add Questions')
+    if !any_role?('Client','Add Questions Only','Manage Questions','Add Questions')
       redirect_to '/homes/index'
     end
   end
   def index
-    @questions= Question.filtered(params[:search]).paginate(:page => params[:page], :per_page =>params[:per_page] || 15)
-    if my_roles.include?('Add Questions')&&!my_roles.include?('Manage Questions')
+    if client?
+      @questions= Question.filtered(params[:search],client).paginate(:page => params[:page], :per_page =>params[:per_page] || 15)
+    else
+      @questions= Question.filtered(params[:search],nil).paginate(:page => params[:page], :per_page =>params[:per_page] || 15)
+    end
+    if all_role?('Add Questions', 'Manage Questions')
       @questions.select! {|q| q.created_by==current_user.user_email}
-    elsif (my_roles.include?('Add Questions Only')&&!my_roles.include?('Manage Questions')&&!my_roles.include?('Add Questions'))
+    elsif all_role?('Add Questions Only', 'Manage Questions', 'Add Questions')
       @questions.select! {|q| q.created_at>=(Time.now-1.minutes)&&q.created_by==current_user.user_email }
     end
     @complexity=Complexity.first(3)
-    @category=Category.all
+    @category = client.categories
     @types=Type.all
-    @users=Question.select("created_by").uniq
+    @users=client.questions.select("created_by").uniq
   end
 
   def show
@@ -32,14 +36,14 @@ class QuestionsController < ApplicationController
     @question = Question.new
     4.times{ @question.options.build }
     @complexity=Complexity.first(3)
-    @categorys=Category.all
+    @categorys=client.categories
     @types=Type.all
   end
   def edit
     @question = Question.find(params[:id])
     @opt=@question.options.all
     @complexity=Complexity.first(3)
-    @categorys=Category.all
+    @categorys=client.categories
     @types=Type.all
   end
   def create
@@ -48,8 +52,9 @@ class QuestionsController < ApplicationController
     @question.answer_id=""
     @question.type_id=""
     @complexity=Complexity.first(3)
-    @categorys=Category.all
+    @categorys=client.categories
     @types=Type.all
+    @question.client = client
     if @question.save
       redirect_to questions_path , notice: 'Question was successfully created.'
     else
@@ -60,7 +65,7 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     params[:question][:updated_by]=current_user.user_email
     @complexity=Complexity.first(3)
-    @categorys=Category.all
+    @categorys=client.categories
     @types=Type.all
     @opt=@question.options.all
     flag=0
@@ -80,7 +85,7 @@ class QuestionsController < ApplicationController
       redirect_to questions_path , notice: 'Question was successfully updated.'
     else
       @complexity=Complexity.all
-      @category=Category.all
+      @category=client.categories
       @types=Type.all
       @opt=@question.options.all
       render action: "edit"

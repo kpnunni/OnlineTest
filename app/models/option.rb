@@ -16,9 +16,9 @@ class Option < ActiveRecord::Base
 
   def set_type
     if self.question.options.where("is_right=?",true).count>1
-      self.question.update_attribute(:type_id,Type.where("question_type=?","check_box").first.id)
+      self.question.update_attribute(:type_id, 1)
     else
-      self.question.update_attribute(:type_id,Type.where("question_type=?","radio_button").first.id)
+      self.question.update_attribute(:type_id, 0)
     end
   end
 

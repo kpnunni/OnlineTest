@@ -3,6 +3,7 @@ class Schedule < ActiveRecord::Base
   attr_accessible  :created_by,:updated_by,:exam_id,:sh_date,:candidate_ids , :remote
   has_many :candidates
   belongs_to :exam
+  belongs_to :client
   accepts_nested_attributes_for :candidates
   after_save :select_candidate
   before_destroy :delete_cid
@@ -31,11 +32,15 @@ class Schedule < ActiveRecord::Base
   end
 
 
-  def self.filtered search
-    @schedules=Schedule.all(:order => 'created_at DESC')
+  def self.filtered(search,client)
+    if client
+      @schedules=client.schedules
+    else
+      @schedules=Schedule
+    end
     @schedules.select! {|schedul| schedul.created_by.include?(search[:by])                                  } if  search.try(:[],:by).present?
     @schedules.select! {|schedul| schedul.created_at.between?((search[:from].to_date),(search[:to].to_date)) } if  search.try(:[],:from).present? && search.try(:[],:to).present?
-    @schedules
+    @schedules.reverse
   end
 
   def self.search(search)

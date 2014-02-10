@@ -12,6 +12,7 @@ class Client < ActiveRecord::Base
   has_many :instructions, :dependent => :destroy
   has_many :questions, :dependent => :destroy
   has_many :categories, :dependent => :destroy
+  has_many :schedules, :dependent => :destroy
 
   accepts_nested_attributes_for :user
 end

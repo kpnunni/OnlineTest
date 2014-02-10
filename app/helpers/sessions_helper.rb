@@ -31,7 +31,10 @@ module SessionsHelper
   end
 
   def any_role?(*roles)
-     (my_roles - roles).size != my_roles.size
+    (my_roles - roles).size != my_roles.size
+  end
+  def all_role?(*roles)
+    (roles - my_roles).size == 0
   end
   def negative
     @negative ||= Setting.find_by_name('negative_mark')
@@ -39,6 +42,10 @@ module SessionsHelper
   def auto_result
      @auto_result ||= Setting.find_by_name('auto_result')
   end
-
-
+  def client?
+     my_roles.include?("Client")
+  end
+  def client
+     current_user.client
+  end
 end

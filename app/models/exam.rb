@@ -3,6 +3,7 @@ class Exam < ActiveRecord::Base
    attr_accessible :name,:description,:created_by, :modified_by,:no_of_question , :instruction_ids , :complexity_id ,:subj ,:total_time
    validates :name, :presence =>true
   belongs_to  :complexity
+  belongs_to :client
   has_and_belongs_to_many :instructions
   has_and_belongs_to_many :questions
 
@@ -77,15 +78,16 @@ class Exam < ActiveRecord::Base
     @question_paper.count
   end
   
-  def self.filtered search
-      if search.nil?
-        return @exam=Exam.all(:order => 'created_at DESC')
-      end
-       name=by=range=Exam.all(:order => 'created_at DESC')
-       name.select! {|xam| xam.name.include?(search["name"]) }             if  search["name"]!=""
-       by.select! {|xam| xam.created_by.include?(search["by"]) }             if  search["by"]!=""
-       range=Exam.where(:created_at => (search[:from].to_date)..(search[:to].to_date))     if search["from"]!="" && search["to"]!=""
-      @exams=name&by&range
+  def self.filtered(search,client)
+    if client
+      @exams = client.exams.order('created_at DESC')
+    else
+      @exams =Exam.all(:order => 'created_at DESC')
+    end
+    @exams.select! {|xam| xam.name.include?(search["name"]) }             if  search && search["name"]!=""
+    @exams.select! {|xam| xam.created_by.include?(search["by"]) }             if  search && search["by"]!=""
+    @exams.select! {|xam| xam.created_at.between(search[:from].to_date)..(search[:to].to_date) }             if  search && search["from"]!="" && search["to"]!=""
+    @exams
   end
     
 end

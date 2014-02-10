@@ -36,7 +36,7 @@
   <%= @question.complexity.complexity %><br />
 
   <b>Type:</b>
-  <%= @question.type.question_type %><br />
+  <%= @question.type_id == 1 ? "check box" : "radio button"  %><br />
 
   <b>created by:</b>
   <%=  @question.created_by %><br />

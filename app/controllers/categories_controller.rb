@@ -6,7 +6,7 @@ class CategoriesController < ApplicationController
     end
   end
   def index
-    @categories = Category.all(:order => 'created_at DESC').paginate(:page => params[:page], :per_page => 20)
+    @categories = client.categories(:order => 'created_at DESC').paginate(:page => params[:page], :per_page => 20)
     @category = Category.new
   end
   def new
@@ -17,6 +17,7 @@ class CategoriesController < ApplicationController
   end
   def create
     @category = Category.new(params[:category])
+    @category.client = client
     if @category.save
       if params[:by]=="add"
         redirect_to new_question_path, notice: 'New category added .'

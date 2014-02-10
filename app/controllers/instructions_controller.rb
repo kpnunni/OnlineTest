@@ -6,7 +6,7 @@ class InstructionsController < ApplicationController
     end
   end
   def index
-    @instructions = Instruction.all(:order => 'created_at DESC').paginate(:page => params[:page], :per_page => 20)
+    @instructions = client.instructions.order('created_at DESC').paginate(:page => params[:page], :per_page => 20)
     @instruction = Instruction.new
   end
   def show
@@ -20,7 +20,7 @@ class InstructionsController < ApplicationController
   end
   def create
     @instruction = Instruction.new(params[:instruction])
-
+    @instruction.client = client
     if @instruction.save
       if params[:by]=="add"
         redirect_to new_exam_path , notice: 'Instruction was successfully created.'

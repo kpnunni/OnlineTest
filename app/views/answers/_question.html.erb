@@ -18,7 +18,7 @@
 
 <div>
   <table cellpadding="0"  width="100%" class="options" >
-  <% if answer.question.type.question_type=="check_box" %>
+  <% if answer.question.type_id == 1 %>
       <% answer.question.options.sort.each_with_index do |op,i| %>
           <tr>
             <%= f.fields_for :c_option do |c_op| %>

@@ -19,16 +19,19 @@ class SchedulesController < ApplicationController
     end
   end
   def index
-    @schedules = Schedule.includes(:exam).filtered(params[:search]).paginate(:page => params[:page], :per_page => 20)
-    @users=Schedule.select("created_by").uniq
+    if client?
+      @schedules = Schedule.includes(:exam).filtered(params[:search],client).paginate(:page => params[:page], :per_page => 20)
+    else
+      @schedules = Schedule.includes(:exam).filtered(params[:search],nil).paginate(:page => params[:page], :per_page => 20)
+    end
   end
   def show
     @schedule = Schedule.find(params[:id])
   end
   def new
-    @exam=Exam.all
+    @exam=client.exams
     @schedule = Schedule.new
-    @candidates=Candidate.all
+    @candidates= client.candidates
     @candidates.delete_if {|c| !c.user.isAlive || !c.schedule_id.nil?  }
   end
   def edit
@@ -40,6 +43,7 @@ class SchedulesController < ApplicationController
   end
   def create
     @schedule = Schedule.new(params[:schedule])
+    @schedule.client = client
     @exam=Exam.all
     @candidates=Candidate.all
     @schedule.created_by=current_user.user_email
@@ -96,7 +100,7 @@ class SchedulesController < ApplicationController
     UserMailer.cancel_schedule_email(@candidate.user,@schedule)
   end
   def chk_user
-    if !current_user.has_role?('Schedule','Re Schedule','Cancel Schedule')
+    if !any_role?('Client','Schedule','Re Schedule','Cancel Schedule')
       redirect_to '/homes/index'
     end
   end

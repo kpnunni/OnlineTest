@@ -29,7 +29,7 @@
         <br /><b>Instructions</b><br />  <br/>
           <input type="checkbox" onClick="toggle1(this)" /> Toggle All
 
-        <% Instruction.all.each do |instruction| %>
+        <% client.instructions.each do |instruction| %>
             <br />
             <%= check_box_tag "exam[instruction_ids][]", instruction.id, @exam.instructions.include?(instruction.id)  %>
             <%= instruction.instruction %>

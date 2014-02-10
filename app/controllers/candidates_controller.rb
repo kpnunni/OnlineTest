@@ -14,8 +14,15 @@ class CandidatesController < ApplicationController
   end
 
   def index
-    @candidates=Candidate.filtered(params[:search]).paginate(:page => params[:page], :per_page =>params[:per_page] || 20)
-    @exam=Exam.all
+    client = current_user.id
+    if client?
+      @candidates = Candidate.filtered(params[:search],client).paginate(:page => params[:page], :per_page =>params[:per_page] || 20)
+      @exam = current_user.client.exams
+    else
+      @candidates = Candidate.filtered(params[:search],nil).paginate(:page => params[:page], :per_page =>params[:per_page] || 20)
+      @exam = Exam.all
+    end
+
   end
 
   def edit
@@ -30,6 +37,7 @@ class CandidatesController < ApplicationController
     @candidate.user.login_password_confirmation="suyati123"
     @candidate.user.encrypt_password
     @candidate.user.roles.push(Role.find_by_role_name('Candidate'))
+    @candidate.client = current_user.client
     if @candidate.save
       redirect_to candidates_path , notice: 'Candidate was successfully created.'
     else

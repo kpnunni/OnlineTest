@@ -1,6 +1,7 @@
 class Setting < ActiveRecord::Base
   attr_accessor :categories_attributes
   attr_accessible :name,:status,:categories_attributes
+  belongs_to :client
 
   def set_cutoff(percentages)
      Category.all.each do |cat|
