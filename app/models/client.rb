@@ -18,7 +18,7 @@ class Client < ActiveRecord::Base
   after_create :create_settings
   after_create :create_templates
 
-  def create_setting
+  def create_settings
     self.settings.create([
         {name: "time_limit_for_each_question", status: "off"},
         {name: "start_code", status: "12345"},
@@ -32,7 +32,7 @@ class Client < ActiveRecord::Base
     ])
   end
 
-  def create_template
+  def create_templates
       self.templates.create([
           {name: "new schedule"},
           {name: "re schedule"},
