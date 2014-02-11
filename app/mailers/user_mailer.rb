@@ -9,10 +9,11 @@ class UserMailer < ActionMailer::Base
   end
   def schedule_email(user)
     @user = user
+    @templates = @user.client ? @user.client.templates : Templates.all
     if @user.candidate.schedule.remote
-      @content=Template.find(6)
+      @content=@templates.where(name: "remote schedule")
     else
-      @content=Template.find(1)
+      @content=@templates.where(name: "new schedule")
     end
     mail(:to => user.user_email, :subject => "Recruitment test")
   end
@@ -22,9 +23,10 @@ class UserMailer < ActionMailer::Base
     mail(:to => admin.user_email, :subject => "New Schedule")
   end
   def update_schedule_email(user)
-    @content=Template.find(2)
     @user = user
-    mail(:to => user.user_email, :subject => "Update schedule")
+    @templates = @user.client ? @user.client.templates : Templates.all
+    @content=@templates.where(name: "re schedule")
+     mail(:to => user.user_email, :subject => "Update schedule")
   end
   def admin_update_schedule_email(user,schedule)
     @user = user
@@ -33,8 +35,9 @@ class UserMailer < ActionMailer::Base
     mail(:to => user.user_email, :subject => "Update schedule")
   end
   def cancel_schedule_email(user,schedule)
-    @content=Template.find(3)
-    @user = user
+     @user = user
+    @templates = @user.client ? @user.client.templates : Templates.all
+    @content=@templates.where(name: "cancel schedule")
     @schedule= schedule
     @url = "recruitment-suyati.herokuapp.com"
     mail(:to => user.user_email, :subject => "Scheduled exam canceled")
@@ -58,10 +61,11 @@ class UserMailer < ActionMailer::Base
     mail(:to => user.user_email, :subject => "Mark Details")
   end
   def result_email(user)
-    @pass=Template.find(4)
-    @fail=Template.find(5)
     @user = user
-    @url = "recruitment-suyati.herokuapp.com"
+    @templates = @user.client ? @user.client.templates : Templates.all
+    @pass=@templates.where(name: "result passed")
+    @fail=@templates.where(name: "result failed")
+     @url = "recruitment-suyati.herokuapp.com"
     mail(:to => user.user_email, :subject => "Recruitment test result")
   end
   def sent_password(user,token)

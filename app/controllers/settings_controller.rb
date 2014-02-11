@@ -2,7 +2,7 @@ class SettingsController < ApplicationController
   before_filter :chk_role
   def edit
      @setting = Setting.new
-     @settings = Setting.all
+     @settings = client.settings
      @multiply_with = get_status('multiply_with')
      @start_code = get_status('start_code')
      @load_more = get_status('load_more')
@@ -16,15 +16,15 @@ class SettingsController < ApplicationController
      @cut_off = (0..100).to_a.select {|v| v%5==0 }
   end
   def update
-    @js_mode = Setting.find_by_name('js_mode')
-    @multiply_with = Setting.find_by_name('multiply_with')
-    @start_code = Setting.find_by_name('start_code')
-    @load_more=Setting.find_by_name('load_more')
-    @negative_mark=Setting.find_by_name('negative_mark')
-    @auto_result=Setting.find_by_name('auto_result')
-    @from=Setting.find_by_name('can_start_exam')
-    @untill=Setting.find_by_name('canot_start_exam')
-    @each_mode=Setting.find_by_name('time_limit_for_each_question')
+    @js_mode = client.settings.find_by_name('js_mode')
+    @multiply_with = client.settings.find_by_name('multiply_with')
+    @start_code = client.settings.find_by_name('start_code')
+    @load_more=client.settings.find_by_name('load_more')
+    @negative_mark=client.settings.find_by_name('negative_mark')
+    @auto_result=client.settings.find_by_name('auto_result')
+    @from=client.settings.find_by_name('can_start_exam')
+    @untill=client.settings.find_by_name('canot_start_exam')
+    @each_mode=client.settings.find_by_name('time_limit_for_each_question')
     if params[:js_mode]=="1"
        @js_mode.update_attribute(:status,:on)
     else
@@ -60,12 +60,12 @@ class SettingsController < ApplicationController
       redirect_to '/settings/edit' ,:notice => "Settings updated"
   end
   def chk_role
-    if current_user.roles.count!=Role.count-1
+    unless admin? || my_roles.include?("Client")
        redirect_to root_path
     end
   end
   def reduce_total_time
-    multiply = Setting.find_by_name('multiply_with').status.to_f
+    multiply = client.settings.find_by_name('multiply_with').status.to_f
     Exam.all.each do |exam|
       current_time = exam.total_time
       new_time = current_time * multiply

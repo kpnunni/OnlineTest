@@ -1,12 +1,12 @@
 class TemplatesController < ApplicationController
     before_filter :chk_user
    def show
-     @template=Template.find(params[:id])
+     @template = client.templates.where(name: params[:id]).first
    end
   def update
     @template=Template.find(params[:id])
     if @template.update_attributes(params[:template])
-       redirect_to @template ,:notice => "Saved changes"
+       redirect_to template_path(@template.name) ,:notice => "Saved changes"
     else
        render action: "show"
      end

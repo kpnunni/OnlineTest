@@ -15,7 +15,7 @@ class ExamsController < ApplicationController
   def instruction
     @exam=Exam.find(params[:id])
     @instructions=@exam.instructions.all
-    @ngtv=Setting.find_by_name('negative_mark').status.eql?("on")
+    @ngtv=@exam.client.settings.find_by_name('negative_mark').status.eql?("on")
   end
   def show
     @exam = Exam.find(params[:id])
@@ -145,8 +145,8 @@ class ExamsController < ApplicationController
   end
   def calculate_total_time
     total_time = @exam.questions.map(&:allowed_time).sum
-    multiply = Setting.find_by_name('multiply_with').status.to_f
-    if Setting.find_by_name("time_limit_for_each_question").status == "off"
+    multiply = @exam.client.settings.find_by_name('multiply_with').status.to_f
+    if @exam.client.settings.find_by_name("time_limit_for_each_question").status == "off"
       @exam.total_time = total_time * multiply
     else
       @exam.total_time = total_time

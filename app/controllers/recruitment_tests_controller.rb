@@ -5,7 +5,11 @@ class RecruitmentTestsController < ApplicationController
   skip_before_filter :authenticate,:only => :update
   helper_method :sort_column, :sort_direction
   def index
-    @recruitment_tests = RecruitmentTest.filtered(params[:search],sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page =>params[:per_page] || 20)
+    if client?
+      @recruitment_tests = RecruitmentTest.filtered(params[:search],sort_column + " " + sort_direction,client).paginate(:page => params[:page], :per_page =>params[:per_page] || 20)
+    else
+      @recruitment_tests = RecruitmentTest.filtered(params[:search],sort_column + " " + sort_direction,nil).paginate(:page => params[:page], :per_page =>params[:per_page] || 20)
+    end
     @categories = Category.all
     @additional = Category.where("category = 'Additional'").first.questions.size
   end

@@ -58,8 +58,8 @@
 
               <div style="display: none;"  id= <%=exam.id%>  >
                 <%@exam = exam  %>
-                <%@ngtv=Setting.find_by_name('negative_mark').status.eql?("on")  %>
-                <%@instructions=@exam .instructions .all  %>
+                <%@ngtv = @exam.client.settings.find_by_name('negative_mark').status.eql?("on")  %>
+                <%@instructions= @exam.instructions .all  %>
                 <%= render 'answers/show_instructions' %>
                 <% if @instructions.empty? %>
                     <h3>No instructions</h3>

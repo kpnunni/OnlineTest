@@ -21,7 +21,7 @@ class RecruitmentTest < ActiveRecord::Base
     right_ans = self.right_answers.to_f
     total_q = user.candidate.schedule.exam.questions.size
     wrong_ans = q_attent-right_ans
-    if Setting.find_by_name('negative_mark').status.eql?("off")
+    if user.candidate.client.settings.find_by_name('negative_mark').status.eql?("off")
       self.mark_percentage= (right_ans/total_q)*100
     else
       self.mark_percentage= ((right_ans-(wrong_ans/4.0))/total_q)*100
@@ -89,8 +89,13 @@ class RecruitmentTest < ActiveRecord::Base
 
   end
 
-  def self.filtered(search,sort)
-    @tests=RecruitmentTest.includes(:candidate => [ :answers =>[:question=>[:complexity, :category]] , :schedule => [:exam => [:questions=>[:complexity, :category]]] ] ).order(sort).all
+  def self.filtered(search,sort,client)
+    if client
+      @tests=RecruitmentTest.includes(:candidate => [ :answers =>[:question=>[:complexity, :category]] , :schedule => [:exam => [:questions=>[:complexity, :category]]] ] ).order(sort).where("candidates.client_id = ?", client.id)
+    else
+      @tests=RecruitmentTest.includes(:candidate => [ :answers =>[:question=>[:complexity, :category]] , :schedule => [:exam => [:questions=>[:complexity, :category]]] ] ).order(sort).all
+    end
+
     @tests.select! {|test| test.candidate.name.include?(search[:name])                         }  if  search.try(:[],:name).present?
     @tests.select! {|test| test.mark_percentage>=search[:min].to_f                             }  if  search.try(:[],:min).present?
     @tests.select! {|test| test.mark_percentage<=search[:max].to_f                             }  if  search.try(:[],:max).present?

@@ -58,8 +58,7 @@ class SessionsController < ApplicationController
     elsif user.admin?
       sign_in user
       redirect_to '/homes/admin'
-    elsif user.has_role?('Manage Users')||user.has_role?('Manage Questions')||user.has_role?('Manage Candidates')||user.has_role?('Manage Exams')||user.has_role?('Schedule')||
-        user.has_role?('Interviewer')||user.has_role?('Add Questions Only')|| user.has_role?('Add Questions')|| user.has_role?('Re Schedule')||user.has_role?('Cancel Schedule')||user.has_role?('Validate Result')||user.has_role?('Manage Templates')||user.has_role?('View Result')
+    elsif user.has_role?('Manage Users','Manage Questions','Manage Candidates','Manage Exams','Schedule','Interviewer','Add Questions Only','Add Questions','Re Schedule','Cancel Schedule','Validate Result','Manage Templates','View Result','Client')
       sign_in user
       redirect_to '/homes/index'
     else

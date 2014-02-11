@@ -7,14 +7,22 @@ desc "Send schedule email for 1 candidate"
 task :send_one_schedule_mail => :environment do
   @candidate = Candidate.find(ENV["CANDIDATE_ID"])
   UserMailer.schedule_email(@candidate.user).deliver
-  @users=User.joins(:roles).where(roles: {role_name: "Get Schedule Email"})
+  if @candidate.client
+    @users= @candidate.client
+  else
+    @users=User.joins(:roles).where(roles: {role_name: "Get Schedule Email"})
+  end
   @users.each {|admin| UserMailer.admin_schedule_email(admin,@candidate.schedule).deliver  }
 end
 desc "Send update schedule email for 1 candidate"
 task :send_one_update_schedule_mail => :environment do
   @candidate = Candidate.find(ENV["CANDIDATE_ID"])
   UserMailer.update_schedule_email(@candidate.user).deliver
-  @users=User.joins(:roles).where(roles: {role_name: "Get Schedule Email"})
+    if @candidate.client
+    @users= @candidate.client
+  else
+    @users=User.joins(:roles).where(roles: {role_name: "Get Schedule Email"})
+  end
   @users.each {|admin| UserMailer.admin_update_schedule_email(admin,@candidate.schedule).deliver  }
 end
 desc "Resend schedule email for 1 candidate"
@@ -31,14 +39,22 @@ desc "Send schedule email for many candidate"
 task :send_schedule_mail => :environment do
   @schedule = Schedule.find(ENV["SCHEDULE_ID"])
   @schedule.candidates.each{|c| UserMailer.schedule_email(c.user).deliver  }
-  @users=User.joins(:roles).where(roles: {role_name: "Get Schedule Email"})
+    if @schedule.client
+    @users= @schedule.client
+  else
+    @users=User.joins(:roles).where(roles: {role_name: "Get Schedule Email"})
+  end
   @users.each {|admin| UserMailer.admin_schedule_email(admin,@schedule).deliver }
 end
 desc "Send update schedule email for many candidate"
 task :send_update_schedule_mail => :environment do
   @schedule = Schedule.find(ENV["SCHEDULE_ID"])
   @schedule.candidates.each{|c| UserMailer.update_schedule_email(c.user).deliver  }
-  @users=User.joins(:roles).where(roles: {role_name: "Get Schedule Email"})
+    if @schedule.client
+    @users= @schedule.client
+  else
+    @users=User.joins(:roles).where(roles: {role_name: "Get Schedule Email"})
+  end
   @users.each {|admin| UserMailer.admin_update_schedule_email(admin,@schedule).deliver }
 end
 desc "Send result email"

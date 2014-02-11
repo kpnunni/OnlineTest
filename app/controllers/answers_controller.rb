@@ -38,7 +38,7 @@ class AnswersController < ApplicationController
         #@answer.save
       end
     end
-    if Setting.find_by_name('js_mode').status.eql?("on")
+    if @candidate.client.settings.find_by_name('js_mode').status.eql?("on")
       salt= current_user.salt
       if @candidate.submitted
          redirect_to additional_answers_path(candidate_id: salt)
@@ -158,7 +158,7 @@ class AnswersController < ApplicationController
     @candidate = current_user.candidate
   end
   def entry_pass_validation
-    actual_code = Setting.find_by_name('start_code').status
+    actual_code = @candidate.client.settings.find_by_name('start_code').status
     if params[:pass] == actual_code
     redirect_to instructions_answers_path
     else
@@ -171,9 +171,9 @@ class AnswersController < ApplicationController
     @instructions=current_user.candidate.schedule.exam.instructions
     @schedule=current_user.candidate.schedule
     @exam=@schedule.exam
-    @ngtv=Setting.find_by_name('negative_mark').status.eql?("on")
+    @ngtv=@candidate.client.settings.find_by_name('negative_mark').status.eql?("on")
     @diff=(@schedule.sh_date.to_i-Time.now.to_i)/60
-    @untill=Setting.find_by_name('canot_start_exam')
+    @untill=@candidate.client.settings.find_by_name('canot_start_exam')
   end
 
   def chk_user
@@ -373,7 +373,7 @@ class AnswersController < ApplicationController
     return  nil
   end
   def feature_enabled
-     Setting.find_by_name('load_more').status.eql?("on")
+    @candidate.client.settings.find_by_name('load_more').status.eql?("on")
   end
   def show_submit
     more_q = Question.additional.count

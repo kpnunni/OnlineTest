@@ -96,7 +96,7 @@ class Answer < ActiveRecord::Base
    end
 
   def make_result(user)
-    return  if Setting.find_by_name('auto_result').status=="off"
+    return  if user.candidate.client.settings.find_by_name('auto_result').status=="off"
 
     passed=true
     user.candidate.schedule.exam.questions.all(:select=>:category_id,:group =>"category_id").each do |q|
