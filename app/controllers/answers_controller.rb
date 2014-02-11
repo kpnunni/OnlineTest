@@ -158,7 +158,7 @@ class AnswersController < ApplicationController
     @candidate = current_user.candidate
   end
   def entry_pass_validation
-    actual_code = @candidate.client.settings.find_by_name('start_code').status
+    actual_code = current_user.candidate.client.settings.find_by_name('start_code').status
     if params[:pass] == actual_code
     redirect_to instructions_answers_path
     else
@@ -171,9 +171,9 @@ class AnswersController < ApplicationController
     @instructions=current_user.candidate.schedule.exam.instructions
     @schedule=current_user.candidate.schedule
     @exam=@schedule.exam
-    @ngtv=@candidate.client.settings.find_by_name('negative_mark').status.eql?("on")
+    @ngtv=@exam.client.settings.find_by_name('negative_mark').status.eql?("on")
     @diff=(@schedule.sh_date.to_i-Time.now.to_i)/60
-    @untill=@candidate.client.settings.find_by_name('canot_start_exam')
+    @untill=@exam.client.settings.find_by_name('canot_start_exam')
   end
 
   def chk_user
