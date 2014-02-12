@@ -22,7 +22,7 @@ class Client < ActiveRecord::Base
     self.settings.create([
         {name: "time_limit_for_each_question", status: "off"},
         {name: "start_code", status: "12345"},
-        {name: "js_mode", status: "off"},
+        {name: "js_mode", status: "on"},
         {name: "negative_mark", status: "off"},
         {name: "auto_result", status: "off"},
         {name: "load_more", status: "off"},
