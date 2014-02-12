@@ -24,10 +24,10 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @question = Question.find(params[:id])
+    @question = client.questions.find(params[:id])
     @options = @question.options
 
-    if my_roles.include?('Add Questions') && !my_roles.include?('Manage Questions')
+    if my_roles.include?('Add Questions') && !any_role?('Client','Manage Questions')
       redirect_to questions_path if @question.created_by != current_user.user_email
     end
 
@@ -40,7 +40,7 @@ class QuestionsController < ApplicationController
     @types=Type.all
   end
   def edit
-    @question = Question.find(params[:id])
+    @question =  client.questions.find(params[:id])
     @opt=@question.options.all
     @complexity=Complexity.first(3)
     @categorys=client.categories
@@ -62,7 +62,7 @@ class QuestionsController < ApplicationController
     end
   end
   def update
-    @question = Question.find(params[:id])
+    @question =  client.questions.find(params[:id])
     params[:question][:updated_by]=current_user.user_email
     @complexity=Complexity.first(3)
     @categorys=client.categories
@@ -92,7 +92,7 @@ class QuestionsController < ApplicationController
     end
   end
   def destroy
-    @question = Question.find(params[:id])
+    @question =  client.questions.find(params[:id])
     @question.destroy
     redirect_to questions_url, notice: 'Question was successfully deleted.'
   end
@@ -102,7 +102,7 @@ class QuestionsController < ApplicationController
       nothing_to_delete=1
       if !params[:question].nil?
         params[:question][:ids].each do |q|
-          @question=Question.find(q.to_i)
+          @question= client.questions.find(q.to_i)
           flag=1 if !@question.exams.empty?
           @question.delete
           nothing_to_delete=0
@@ -118,14 +118,14 @@ class QuestionsController < ApplicationController
     elsif params[:commit] == "Update all"    #edit all
       time = params[:new_allowed_time].to_i
       if time > 0 and time <= 200
-        Question.update_all({allowed_time: time},{ id:  params[:question][:ids]})
+        client.questions.update_all({allowed_time: time},{ id:  params[:question][:ids]})
         flash[:notice]="Question's' updated successfully"
       else
         flash[:error]="Invalid allowed time"
       end
     else  #to print
        if params[:question] && !params[:question][:ids].empty?
-         @questions =  Question.where(id: params[:question][:ids]).reverse
+         @questions =   client.questions.where(id: params[:question][:ids]).reverse
          render print_questions_questions_path(:format => 'pdf')
          return
        else
@@ -137,7 +137,7 @@ class QuestionsController < ApplicationController
   def print_questions
   end
   def delete_image
-    @question=Question.find(params[:id])
+    @question= client.questions.find(params[:id])
     @question.question_image.clear
     @question.save(validate: false)
     redirect_to edit_question_path(@question)

@@ -12,7 +12,7 @@ class SettingsController < ApplicationController
      @untill = get_status('canot_start_exam')
      @each_mode = get_status('time_limit_for_each_question')
      @js_mode = get_status('js_mode')
-     @categories =Category.all
+     @categories = client.categories.all
      @cut_off = (0..100).to_a.select {|v| v%5==0 }
   end
   def update

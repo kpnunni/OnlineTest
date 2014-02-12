@@ -47,7 +47,7 @@
         <th>available</th>
       </tr>
 
-      <% Category.all.each do |category| %>
+      <%  client.categories.all.each do |category| %>
         <% if !category.questions.empty?  %>
           <tr>
             <td><%= category.category %></td>

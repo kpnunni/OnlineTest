@@ -32,7 +32,7 @@
         <th>no_of_question</th>
 
       </tr>
-      <% Category.all.each do |cat| %>
+      <%  client.categories.all.each do |cat| %>
        <% Complexity.all.each do |com| %>
          <% if @exam.questions.where("category_id=? and complexity_id=?",cat.id,com.id).count!=0 %>
           <tr>

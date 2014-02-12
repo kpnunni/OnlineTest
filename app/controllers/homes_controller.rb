@@ -7,21 +7,21 @@ class HomesController < ApplicationController
   end
   def admin
 
-    @schedules1=Schedule.where("sh_date between ? and ?",Date.today ,Date.tomorrow  ).reverse_order
-    @schedules7=Schedule.where("sh_date between ? and ?",Date.today.beginning_of_week,Date.today.end_of_week).reverse_order
-    @schedules30=Schedule.where("sh_date between ? and ?",Date.today.beginning_of_month,Date.today.end_of_month).reverse_order
+    @schedules1=clinet.schedules.where("sh_date between ? and ?",Date.today ,Date.tomorrow  ).reverse_order
+    @schedules7=clinet.schedules.where("sh_date between ? and ?",Date.today.beginning_of_week,Date.today.end_of_week).reverse_order
+    @schedules30=clinet.schedules.where("sh_date between ? and ?",Date.today.beginning_of_month,Date.today.end_of_month).reverse_order
 
-    @results1 =RecruitmentTest.includes([:candidate]).where("completed_on between ? and ?",Date.today ,Date.tomorrow  ).reverse_order
-    @results7 =RecruitmentTest.includes([:candidate]).where("completed_on between ? and ?",Date.today.beginning_of_week,Date.today.end_of_week).reverse_order
-    @results30 =RecruitmentTest.includes([:candidate]).where("completed_on between ? and ?",Date.today.beginning_of_month,Date.today.end_of_month).reverse_order
+    @results1 =RecruitmentTest.includes([:candidate]).where("completed_on between ? and ? and candidates.client_id = ?",Date.today ,Date.tomorrow ,client.id ).reverse_order
+    @results7 =RecruitmentTest.includes([:candidate]).where("completed_on between ? and ? and candidates.client_id = ?",Date.today.beginning_of_week,Date.today.end_of_week,client.id ).reverse_order
+    @results30 =RecruitmentTest.includes([:candidate]).where("completed_on between ? and ? and candidates.client_id = ?",Date.today.beginning_of_month,Date.today.end_of_month,client.id ).reverse_order
 
-    @questions=Question.includes([:options,:category,:complexity,:type]).last(10).reverse
-    @candidates=RecruitmentTest.includes([:candidate]).find_all_by_is_passed("Passed").last(10).reverse
+    @questions= client.questions.includes([:options,:category,:complexity,:type]).last(10).reverse
+    @candidates=RecruitmentTest.includes([:candidate]).where("is_passed = 'Passed' and candidates.client_id = ?",client.id ).last(10).reverse
 
   end
 
   def chk_admin
-    if !admin?
+    unless admin? || client?
       redirect_to  '/homes/index'
     end
   end

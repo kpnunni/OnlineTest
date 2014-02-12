@@ -42,22 +42,22 @@ class Question < ActiveRecord::Base
   #  "#{id} #{question.first(50)}".parameterize
   #end
   def next_question(exam_id,additional)
-    if additional
-      question_ids = Question.additional.order(:id).map(&:id)
-    else
+    #if additional
+    #  question_ids = Question.additional.order(:id).map(&:id)
+    #else
       @exam = Exam.where(id: exam_id).first
       question_ids = @exam.questions.order(:category_id,:id).map(&:id)
-    end
+    #end
     next_q = question_ids[question_ids.index(self.id)+1]
   end
 
   def previous_question(exam_id,additional)
-    if additional
-      question_ids = Question.additional.order(:id).map(&:id)
-    else
+    #if additional
+    #  question_ids = Question.additional.order(:id).map(&:id)
+    #else
       @exam = Exam.where(id: exam_id).first
       question_ids = @exam.questions.order(:category_id,:id).map(&:id)
-    end
+    #end
     prev_q = question_ids[question_ids.index(self.id)-1]
     prev_q == question_ids[-1] ? nil : prev_q
   end

@@ -25,11 +25,11 @@ class ExamsController < ApplicationController
   def new
     @exam = Exam.new
     @instruction=Instruction.new
-    @exam.subj =Array.new(Category.count)
+    @exam.subj =Array.new( client.categories.count)
   end
   def edit
     @exam = Exam.find(params[:id])
-    @exam.subj =Array.new(Category.count)
+    @exam.subj =Array.new( client.categories.count)
     @instruction=Instruction.new
   end
   def create
@@ -134,7 +134,7 @@ class ExamsController < ApplicationController
   def regenerate_question_paper?
     categories = @exam.questions.group(:category_id).count
     subjects = {}
-    categories.each{|k,v| subjects[Category.find(k).category]=v.to_s}
+    categories.each{|k,v| subjects[ client.categories.find(k).category]=v.to_s}
     new_subjects = params[:exam][:subj]
     new_subjects.delete_if {|k,v| v=="0"}
     if subjects == new_subjects

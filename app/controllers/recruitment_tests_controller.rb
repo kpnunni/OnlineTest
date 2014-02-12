@@ -10,14 +10,14 @@ class RecruitmentTestsController < ApplicationController
     else
       @recruitment_tests = RecruitmentTest.filtered(params[:search],sort_column + " " + sort_direction,nil).paginate(:page => params[:page], :per_page =>params[:per_page] || 20)
     end
-    @categories = Category.all
+    @categories =  client.categories.all
     @additional = Category.where("category = 'Additional'").first.questions.size
   end
   def show
     @recruitment_test = RecruitmentTest.includes(:candidate => [ :answers =>[:question=>[:options,:complexity, :category]] , :schedule => [:exam => [:questions=>[:complexity, :category]]] ] ).find(params[:id])
     @extra = find_extra(@recruitment_test)
     @additional = Category.where("category = 'Additional'").first.questions.size
-    @categories = Category.all
+    @categories =  client.categories.all
   end
   def update
     @recruitment_test = RecruitmentTest.find(params[:id])

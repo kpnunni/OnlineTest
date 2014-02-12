@@ -12,7 +12,7 @@ class Exam < ActiveRecord::Base
   def generate_question_paper
 
 
-    @categorys = Category.all
+    @categorys =  self.client.categories.all
     @question_paper=Array.new
 
 
@@ -21,7 +21,7 @@ class Exam < ActiveRecord::Base
         self.subj[category.category]=0     if self.subj[category.category].nil?
         nos=self.subj[category.category].to_i
         if nos!=0
-           @questions=Question.where("category_id = ?",category.id ).shuffle.first(nos)
+           @questions= self.client.questions.where("category_id = ?",category.id ).shuffle.first(nos)
            @questions.each {|q| @question_paper<<q }
         end
 
@@ -48,7 +48,7 @@ class Exam < ActiveRecord::Base
       self.subj[category.category]=0     if self.subj[category.category].nil?
       nos=(self.subj[category.category].to_i*h).to_i
       if nos!=0
-        @questions=Question.where("complexity_id = ? AND category_id = ?",comp_id, category.id ).shuffle.first(nos)
+        @questions= self.client.questions.where("complexity_id = ? AND category_id = ?",comp_id, category.id ).shuffle.first(nos)
          @questions.each {|q| @question_paper<<q }
       end
     end
@@ -58,7 +58,7 @@ class Exam < ActiveRecord::Base
     @categorys.each do |category|
       nos=(self.subj[category.category].to_i*l).to_i
       if nos!=0
-        @questions=Question.where("complexity_id = ? AND category_id = ?",comp_id, category.id ).shuffle.first(nos)
+        @questions= self.client.questions.where("complexity_id = ? AND category_id = ?",comp_id, category.id ).shuffle.first(nos)
         @questions.each {|q| @question_paper<<q }
       end
     end
@@ -68,7 +68,7 @@ class Exam < ActiveRecord::Base
     @categorys.each do |category|
       nos=self.subj[category.category].to_i-((self.subj[category.category].to_i*l).to_i + (self.subj[category.category].to_i*h).to_i)
       if nos!=0
-        @questions=Question.where("complexity_id = ? AND category_id = ?",comp_id, category.id ).shuffle.first(nos)
+        @questions= self.client.questions.where("complexity_id = ? AND category_id = ?",comp_id, category.id ).shuffle.first(nos)
         @questions.each {|q| @question_paper<<q }
       end
     end

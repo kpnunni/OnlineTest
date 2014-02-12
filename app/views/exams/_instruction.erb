@@ -5,7 +5,7 @@
       <%= ins.instruction  %><br/>
   <% end %>
   <%= image_tag 'point.png' %>This Exam contains
-  <% Category.all.each do |cat| %>
+  <%  client.categories.all.each do |cat| %>
 
       <% if @exam.questions.where("category_id=? ",cat.id ).count!=0 %>
           <%= @exam.questions.where("category_id=? ",cat.id ).count %>

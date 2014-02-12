@@ -40,11 +40,11 @@ class AnswersController < ApplicationController
     end
     if @candidate.client.settings.find_by_name('js_mode').status.eql?("on")
       salt= current_user.salt
-      if @candidate.submitted
-         redirect_to additional_answers_path(candidate_id: salt)
-      else
+      #if @candidate.submitted
+      #   redirect_to additional_answers_path(candidate_id: salt)
+      #else
          redirect_to answers_path(candidate_id: salt)
-      end
+      #end
     else
       @answers = Answer.where("candidate_id=?",@candidate.id )
       if @candidate.submitted
@@ -254,11 +254,12 @@ class AnswersController < ApplicationController
     end
 
     if  params[:to]=="finish"||params[:to].nil?||params[:to]=="timer"
-      if @candidate.submitted
-        redirect_to feed_back_answers_path
-      else
+      #if @candidate.submitted
         start_additional_question
-        redirect_to answer_path(@nxt)
+        redirect_to feed_back_answers_path
+      #else
+      #  start_additional_question
+      #  redirect_to answer_path(@nxt)
       end
     else
       #@nxt=@answer.get_next_ans_in_single_mode(params[:to].to_i)
@@ -282,7 +283,7 @@ class AnswersController < ApplicationController
     @answer.save_mark(current_user)
     @answer.make_result(current_user)
     @candidate.update_attribute(:submitted, true)
-    @nxt = add_additional_answers
+    #@nxt = add_additional_answers
   end
 
   def calculate_remaining_time
@@ -306,8 +307,8 @@ class AnswersController < ApplicationController
 
   def more_questions_available
     exam_question_ids = @candidate.answers.map(&:question_id)
-    more_category = Category.where("category = 'Additional'").first.id
-    questions = Question.where("category_id = ? and id not in (?)",more_category,exam_question_ids)
+    more_category = @candidate.client.categories.where("category = 'Additional'").first.id
+    questions = @candidate.client.questions.where("category_id = ? and id not in (?)",more_category,exam_question_ids)
     questions.present? ? true : false
   end
 
@@ -316,8 +317,8 @@ class AnswersController < ApplicationController
     #exam_questions = Question.find(exam_question_ids)
     #catogry=exam_questions.map(&:category_id).uniq
     #questions = Question.where("category_id in (?)",catogry)
-    more_category = Category.where("category = 'Additional'").first.id
-    questions = Question.where("category_id = ? and id not in (?)",more_category,exam_question_ids)
+    more_category = @candidate.client.categories.where("category = 'Additional'").first.id
+    questions = @candidate.client.questions.where("category_id = ? and id not in (?)",more_category,exam_question_ids)
     next_question = questions.shuffle.first
     @answer=Answer.new
     @answer.question=next_question

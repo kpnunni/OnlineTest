@@ -64,9 +64,9 @@
                 },
                 function(data, status){
                     if(finish == 1){
-                        window.location.href = additional_url;
-                    }
-                    else if(finish == 2){
+//                        window.location.href = additional_url;
+//                    }
+//                    else if(finish == 2){
                         window.location.href = feedback_url;
                     }
                 } ,
@@ -238,20 +238,20 @@
 
 <br/>
 <div align="center">
-<% if controller.action_name == "additional" %>
- <%= button_to_function "Finish Section B".html_safe, "finish_sectionB();" ,class: "btn btn-large btn-danger",:title=>"Submit first part of the exam and attends Section B" %>
-<% else %>
- <%= button_to_function "Finish Section A &#8594&#8594".html_safe, "finish_sectionA();" ,class: "btn btn-large btn-danger",:title=>"Submit second part of the exam" %>
-<% end %>
+<%# if controller.action_name == "additional" %>
+ <%#= button_to_function "Finish Section B".html_safe, "finish_sectionB();" ,class: "btn btn-large btn-danger",:title=>"Submit first part of the exam and attends Section B" %>
+<%# else %>
+ <%= button_to_function "Finish Exam", "finish_sectionA();" ,class: "btn btn-large btn-danger",:title=>"Submit the exam" %>
+<%# end %>
 </div>
 <br/> Please call: 9037498886 for immediate assistance <br/>
 <div id="confirm" style="display: none;">
-  Are you sure to submit Section A of your Exam? <br/>
-  You won't be able to answer or modify from Section A again. Time remaining for Section A will not be carry forward for Section B as it will be elapsed if you go for Submit Section A.<br/><br/>
-  If you are done Section A please Press 'Submit my exam' to proceed for Section B else cancel to stay back on Section A.<br/>
+  Are you sure to submit your Exam? <br/>
+  <!--You won't be able to answer or modify from Section A again. Time remaining for Section A will not be carry forward for Section B as it will be elapsed if you go for Submit Section A.<br/><br/>-->
+  <!--If you are done Section A please Press 'Submit my exam' to proceed for Section B else cancel to stay back on Section A.<br/>-->
 </div>
-<div id="confirmB" style="display: none;">
-  Really want to submit Section B of your exam?
-</div>
+<!--<div id="confirmB" style="display: none;">-->
+  <!--Really want to submit Section B of your exam?-->
+<!--</div>-->
 
 

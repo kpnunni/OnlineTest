@@ -49,7 +49,7 @@
         <th>Mark</th>
         <th>Mark(%)</th>
       </tr>
-      <% Category.all.each do |cat| %>
+      <%  result.candidate.client.categories.all.each do |cat| %>
           <% if result.candidate.schedule.exam.questions.where("category_id=?",cat.id).count!=0 %>
 
               <tr>
