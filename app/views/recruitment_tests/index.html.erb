@@ -159,7 +159,7 @@
 </script>
 
 <script type="text/javascript">
-    jQuery(document).ready(function(){
+    window.onload = function(){
         jQuery("#report tr:odd").addClass("odd");
         jQuery("#report tr:not(.odd)").hide();
         jQuery("#report tr:first-child").show();
@@ -168,5 +168,5 @@
             jQuery(this).parent("tr").next("tr").toggle();
             jQuery(this).find(".arrow").toggleClass("up");
         });
-    });
+    }
 </script>
