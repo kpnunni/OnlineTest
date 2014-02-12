@@ -1,6 +1,11 @@
 class ClientsController < ApplicationController
   before_action :set_client, only: [:show, :edit, :update, :destroy]
-
+  before_action :chk_user
+  def chk_user
+    if !admin?
+      redirect_to '/homes/index'
+    end
+  end
   # GET /clients
   def index
     @clients = Client.all

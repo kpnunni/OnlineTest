@@ -260,7 +260,7 @@ class AnswersController < ApplicationController
       #else
       #  start_additional_question
       #  redirect_to answer_path(@nxt)
-      end
+      #end
     else
       #@nxt=@answer.get_next_ans_in_single_mode(params[:to].to_i)
       redirect_to answer_path(params[:to].to_i)
