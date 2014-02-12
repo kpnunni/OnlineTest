@@ -7,7 +7,7 @@
         <ul class="nav pull-right">
           <% @ok = signed_in? && !my_roles.include?('Candidate') %>
          <%if @ok %>
-              <% if admin? %>
+              <% if admin? || client? %>
               <li><%= link_to "Home",   '/homes/admin' %></li>
                <% else %>
               <li><%= link_to "Home",   '/homes/index' %></li>

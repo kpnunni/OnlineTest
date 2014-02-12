@@ -7,9 +7,9 @@ class HomesController < ApplicationController
   end
   def admin
 
-    @schedules1=clinet.schedules.where("sh_date between ? and ?",Date.today ,Date.tomorrow  ).reverse_order
-    @schedules7=clinet.schedules.where("sh_date between ? and ?",Date.today.beginning_of_week,Date.today.end_of_week).reverse_order
-    @schedules30=clinet.schedules.where("sh_date between ? and ?",Date.today.beginning_of_month,Date.today.end_of_month).reverse_order
+    @schedules1= client.schedules.where("sh_date between ? and ?",Date.today ,Date.tomorrow  ).reverse_order
+    @schedules7= client.schedules.where("sh_date between ? and ?",Date.today.beginning_of_week,Date.today.end_of_week).reverse_order
+    @schedules30=client.schedules.where("sh_date between ? and ?",Date.today.beginning_of_month,Date.today.end_of_month).reverse_order
 
     @results1 =RecruitmentTest.includes([:candidate]).where("completed_on between ? and ? and candidates.client_id = ?",Date.today ,Date.tomorrow ,client.id ).reverse_order
     @results7 =RecruitmentTest.includes([:candidate]).where("completed_on between ? and ? and candidates.client_id = ?",Date.today.beginning_of_week,Date.today.end_of_week,client.id ).reverse_order
