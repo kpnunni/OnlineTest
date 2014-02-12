@@ -9,11 +9,11 @@ class UserMailer < ActionMailer::Base
   end
   def schedule_email(user)
     @user = user
-    @templates = @user.client ? @user.client.templates : Templates.all
+    @templates = @user.client ? @user.client.templates : Template.all
     if @user.candidate.schedule.remote
-      @content=@templates.where(name: "remote schedule")
+      @content=@templates.where(name: "remote schedule").first
     else
-      @content=@templates.where(name: "new schedule")
+      @content=@templates.where(name: "new schedule").first
     end
     mail(:to => user.user_email, :subject => "Recruitment test")
   end
@@ -24,8 +24,8 @@ class UserMailer < ActionMailer::Base
   end
   def update_schedule_email(user)
     @user = user
-    @templates = @user.client ? @user.client.templates : Templates.all
-    @content=@templates.where(name: "re schedule")
+    @templates = @user.client ? @user.client.templates : Template.all
+    @content=@templates.where(name: "re schedule").first
      mail(:to => user.user_email, :subject => "Update schedule")
   end
   def admin_update_schedule_email(user,schedule)
@@ -36,8 +36,8 @@ class UserMailer < ActionMailer::Base
   end
   def cancel_schedule_email(user,schedule)
      @user = user
-    @templates = @user.client ? @user.client.templates : Templates.all
-    @content=@templates.where(name: "cancel schedule")
+    @templates = @user.client ? @user.client.templates : Template.all
+    @content=@templates.where(name: "cancel schedule").first
     @schedule= schedule
     @url = "recruitment-suyati.herokuapp.com"
     mail(:to => user.user_email, :subject => "Scheduled exam canceled")
@@ -62,9 +62,9 @@ class UserMailer < ActionMailer::Base
   end
   def result_email(user)
     @user = user
-    @templates = @user.client ? @user.client.templates : Templates.all
-    @pass=@templates.where(name: "result passed")
-    @fail=@templates.where(name: "result failed")
+    @templates = @user.client ? @user.client.templates : Template.all
+    @pass=@templates.where(name: "result passed").first
+    @fail=@templates.where(name: "result failed").first
      @url = "recruitment-suyati.herokuapp.com"
     mail(:to => user.user_email, :subject => "Recruitment test result")
   end
